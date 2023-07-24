@@ -1,0 +1,59 @@
+import React from 'react'
+import '../assets/whethereImges/sun.jpg'
+
+function CardWeathereDay(props) {
+  let tempDay = (((props.day.temp.max+props.day.temp.eve)/2) - 272.15).toFixed(2);
+  let img = props.day.weather[0].icon;
+  let description = props.day.weather[0].description;
+  let indexDay = props.i;
+  let degreeColor = '', cntHotestTime = 0;
+  console.log(props);
+  let timeDayArr = ['day', 'eve', 'morn', 'night'];
+  let feels_likeArr = props.day.feels_like;
+  let tempArr = props.day.temp;
+
+
+  timeDayArr.map((i) => {
+    if (feels_likeArr[i] > tempArr[i])
+      cntHotestTime++;
+  }
+  )
+  if (cntHotestTime == 1) {
+    degreeColor = 'silver';
+  } else if (cntHotestTime == 2) {
+    degreeColor = 'orange';
+  }
+  else if (cntHotestTime > 2) {
+    degreeColor = 'red';
+  }
+console.log(degreeColor);
+  return (
+    <div className={`mx-1 my-5 col-2 rounded bg-opacity-50`} style={{color:degreeColor}}>
+      <p className='display-7 font-weight-bold '>
+
+        {
+          (indexDay == 1) &&
+          <p> מחר:</p>
+        }
+        {
+          (indexDay == 2) &&
+          <p> מחרתיים:</p>
+        }
+        {
+          (indexDay > 2) &&
+          <p> בעוד {indexDay} ימים:</p>
+
+        }
+
+      </p>
+
+
+      <p >{tempDay}&deg;</p>
+      <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} title={description} className='overflow-hiden w-75' />
+      <p>{description}</p>
+
+    </div>
+  )
+}
+
+export default CardWeathereDay
