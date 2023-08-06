@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import Home from './comps/Home';
 import { Switch } from '@headlessui/react';
 import Main from './comps/main';
+import Haeder from './comps/haeder';
 
 function App() {
   
@@ -13,6 +14,7 @@ function App() {
 
      <>
      <BrowserRouter>
+     <Haeder/>
       <Routes>
           <Route index element={<Main />} />
           <Route path="/login" element={<Login />}/>        
