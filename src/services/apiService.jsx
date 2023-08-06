@@ -1,5 +1,6 @@
 import { API_URL, doApiMethod, doApiGet } from "./apiBasic";
 import axios from "axios";
+import weatherData from '../assets/apiRequest.json'
 
 
 export const doApiLogin = async (bodyData) => {
@@ -14,8 +15,14 @@ export const doApiLogin = async (bodyData) => {
 export const doApiGetCities = async () => {
   let url = API_URL + "/getAllCities";
   try {
-    let resp = await doApiGet(url);
-    return resp;
+    // let resp = await doApiGet(url);
+    // return resp;
+    let cityResFromData=[];
+    let data = (weatherData.map(city => {
+     let cityName= city.timezone.split('/')[1];
+     cityResFromData.push({city:cityName})
+    }));
+    return cityResFromData;
   } catch (err) {
     return err.response;
   }
@@ -24,9 +31,7 @@ export const doApiGetCities = async () => {
 
 export const getCityDetails = async (currentCityName) => {
   let cityRes = await doApiGetCityByName(currentCityName);
-  debugger
   let res = await getWethereBylatlan(cityRes.data.latitude, cityRes.data.longitude);
-  console.log(res);
   return res;
 }
 export const doApiGetCityByName = async (cityName) => {
@@ -40,12 +45,15 @@ export const doApiGetCityByName = async (cityName) => {
   }
 }
 export const getWethereBylatlan = async (lat, lan) => {
-  // 
   if (lat && lan) {
-    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lan}&appid=36e8fa4c6409867c995a60e402d56a19`;
+    // ${process.env.API_KEY}
+    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lan}&appid=6f11fa9760902e1597265ad205f05d2c`;
     try {
-      let resp = await axios.get(url);
-      return resp;
+      // let resp = await axios.get(url);
+      //  return resp;
+      let data = (weatherData.find((obj) => obj.lat == lat.toFixed(4) && obj.lon == lan.toFixed(4)));
+      return data;
+
     } catch (err) {
       throw err;
     }

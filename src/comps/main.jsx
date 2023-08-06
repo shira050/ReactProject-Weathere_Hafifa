@@ -25,6 +25,8 @@ function Main() {
         fetchData();
     }, []);
 
+
+   
     return (
         <>
             {currentUser ? (

@@ -1,13 +1,14 @@
 import React from 'react'
 import '../assets/whethereImges/sun.jpg'
+import { useTranslation } from 'react-i18next';
 
 function CardWeathereDay(props) {
-  let tempDay = (((props.day.temp.max+props.day.temp.eve)/2) - 272.15).toFixed(2);
+  const { t } = useTranslation('he');
+  let tempDay = (((props.day.temp.max + props.day.temp.eve) / 2) - 272.15).toFixed(2);
   let img = props.day.weather[0].icon;
-  let description = props.day.weather[0].description;
+  let description = t(props.day.weather[0].description.toString());
   let indexDay = props.i;
   let degreeColor = '', cntHotestTime = 0;
-  console.log(props);
   let timeDayArr = ['day', 'eve', 'morn', 'night'];
   let feels_likeArr = props.day.feels_like;
   let tempArr = props.day.temp;
@@ -26,9 +27,9 @@ function CardWeathereDay(props) {
   else if (cntHotestTime > 2) {
     degreeColor = 'red';
   }
-console.log(degreeColor);
+  console.log(degreeColor);
   return (
-    <div className={`mx-1 my-5 col-2 rounded bg-opacity-50`} style={{color:degreeColor}}>
+    <div className={`mx-1 my-5 col-2 rounded bg-light bg-opacity-50 position-absulute`} style={{ color: degreeColor }}>
       <p className='display-7 font-weight-bold '>
 
         {
@@ -48,9 +49,10 @@ console.log(degreeColor);
       </p>
 
 
-      <p >{tempDay}&deg;</p>
       <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} title={description} className='overflow-hiden w-75' />
-      <p>{description}</p>
+      <p className='font-weight-bold'>{tempDay}&deg;</p>
+      
+      <p>{description}</p> 
 
     </div>
   )

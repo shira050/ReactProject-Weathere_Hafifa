@@ -6,7 +6,6 @@ export const API_URL = "http://localhost:3001";
 export const USER = "user";
 
 export const doApiGet = async (_url) => {
-  // const { currentUser } = useContext(UserContext);
   let currentUser = JSON.parse(localStorage[USER]);
   
   try {
