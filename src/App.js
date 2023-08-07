@@ -7,6 +7,7 @@ import Home from './comps/Home';
 import { Switch } from '@headlessui/react';
 import Main from './comps/main';
 import HistoryLastSearch from './comps/historyLastSearch';
+import Haeder from './comps/haeder';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
 
      <div style={{direction:'rtl'}}>
      <BrowserRouter>
-     {/* <Haeder/> */}
+     <Haeder/>
       <Routes>
           <Route index element={<Main />} />
           <Route path="/login" element={<Login />}/>  
