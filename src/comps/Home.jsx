@@ -86,12 +86,16 @@ export default function Home() {
     //   }
     // }
     const fetchData = async () => {
+      if(!currentCity){
+     
       for (let index = 0; index < cities.length; index++) {
         if (cities[index].city.toLowerCase() === 'jerusalem') {
           await updateCurrentCity(cities[index]);
           break;
         }
       }
+         
+    }
     };
     fetchData();
     // cities.length > 0 && fetchData2();

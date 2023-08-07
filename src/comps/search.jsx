@@ -4,15 +4,20 @@ import { CityContext } from "../context/cityContext";
 import { doApiGetCityByName, getCityDetails } from "../services/apiService";
 import { MDBBtn } from "mdb-react-ui-kit";
 
+
 const Search = () => {
-  const { cities, updateCurrentCity } = useContext(CityContext);
+  const { cities, updateCurrentCity, historySearch,setHistorySearch } = useContext(CityContext);
   const [searchValue, setSearchValue] = useState("");
+
   const inputRef = useRef();
 
   const serchCountry = async () => {
     debugger
     const selectedCity = JSON.parse(inputRef.current.value);
     updateCurrentCity(selectedCity);
+    if(historySearch.length>=5)
+   { historySearch.splice(0, 1) }
+    historySearch.push(selectedCity)
   };
 
   return (
