@@ -11,7 +11,7 @@ function App() {
   
   return (
 
-     <>
+     <div style={{direction:'rtl'}}>
      <BrowserRouter>
       <Routes>
           <Route index element={<Main />} />
@@ -19,7 +19,7 @@ function App() {
           <Route path="*" element={()=>{return <h1>not found!!</h1>}} /> 
       </Routes>
     </BrowserRouter>
-     </>
+     </div>
   );
 }
 
