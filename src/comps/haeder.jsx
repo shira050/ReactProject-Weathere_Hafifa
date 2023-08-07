@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import '../comps/css/header.css' 
+import '../comps/css/header.css' 
 
 export default function Haeder() {
   return (
