@@ -29,7 +29,7 @@ function CardWeathereDay(props) {
   }
   console.log(degreeColor);
   return (
-    <div className={`mx-1 my-5 col-2 rounded bg-light bg-opacity-50 position-absulute`} style={{ color: degreeColor }}>
+    <div className={`m-1 col-2 rounded bg-light bg-opacity-75 `} style={{ color: degreeColor,border:`solid ${degreeColor} 2px ` }}>
       <p className='display-7 font-weight-bold '>
 
         {

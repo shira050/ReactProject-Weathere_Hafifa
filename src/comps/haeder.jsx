@@ -6,6 +6,7 @@ export default function Haeder() {
     <nav dir="rtl" class=" navbar bg-dark">
       <div class="container-fluid">
         <Link class="navbar-brand text-light" to='/'>ראשי</Link>
+        <Link class="navbar-brand text-light" to='/mador'>מדור</Link>
       </div>
     </nav>
   )

@@ -7,6 +7,7 @@ import Home from './comps/Home';
 import { Switch } from '@headlessui/react';
 import Main from './comps/main';
 import Haeder from './comps/haeder';
+import Mador from './comps/mador';
 
 function App() {
   
@@ -18,7 +19,7 @@ function App() {
       <Routes>
           <Route index element={<Main />} />
           <Route path="/login" element={<Login />}/>        
-          <Route path="/mador" element={<Login />}/>        
+          <Route path="/mador" element={<Mador />}/>        
           <Route path="*" element={()=>{return <h1>not found!!</h1>}} /> 
       </Routes>
     </BrowserRouter>
