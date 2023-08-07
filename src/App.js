@@ -18,6 +18,7 @@ function App() {
       <Routes>
           <Route index element={<Main />} />
           <Route path="/login" element={<Login />}/>        
+          <Route path="/history" element={<History />}/>        
           <Route path="*" element={()=>{return <h1>not found!!</h1>}} /> 
       </Routes>
     </BrowserRouter>
