@@ -6,7 +6,7 @@ import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import Home from './comps/Home';
 import { Switch } from '@headlessui/react';
 import Main from './comps/main';
-// import HistoryLastSearch from './comps/historyLastSearch';
+import HistoryLastSearch from './comps/historyLastSearch';
 
 
 function App() {
@@ -15,11 +15,11 @@ function App() {
 
      <div style={{direction:'rtl'}}>
      <BrowserRouter>
-     <Haeder/>
+     {/* <Haeder/> */}
       <Routes>
           <Route index element={<Main />} />
           <Route path="/login" element={<Login />}/>  
-          {/* <Route path="/history" element={<HistoryLastSearch />}/>               */}
+          <Route path="/history" element={<HistoryLastSearch />}/>              
           <Route path="*" element={()=>{return <h1>not found!!</h1>}} /> 
       </Routes>
     </BrowserRouter>
