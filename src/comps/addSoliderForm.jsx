@@ -9,7 +9,6 @@ export default function AddSoliderForm() {
   const [gender, setGender] = useState('');
 
   const addNewSolider = (newSolider) => {
-    debugger
     setSoliders([...soliders, newSolider]);
     alert('חייל/ת נוסף/ה בהצלחה!');
   };
@@ -18,9 +17,9 @@ export default function AddSoliderForm() {
     event.preventDefault();
 
     const newSoldier = {
-        First_Name: name,
-        Mispar_Ishi: id,
-        Gender: gender,
+      name: name,
+      id: id,
+      gender: gender,
     };
 
     addNewSolider(newSoldier);
@@ -34,11 +33,17 @@ export default function AddSoliderForm() {
   // Disable submit button until all fields are filled
   const isSubmitDisabled = !name || !id || !gender;
 
+  const handleIdChange = (e) => {
+    // Allow only numbers
+    const inputValue = e.target.value.replace(/\D/g, '');
+    setId(inputValue);
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <MDBInput
         wrapperClass='mb-4'
-        id='First_Name'
+        id='name_solider'
         type='text'
         placeholder='שם החייל'
         value={name}
@@ -46,25 +51,24 @@ export default function AddSoliderForm() {
       />
       <MDBInput
         wrapperClass='mb-4'
-        id='Mispar_Ishi'
-        type='number'
+        id='id_solider'
+        type='text' // Change the input type to 'text'
         placeholder='מספר אישי'
         value={id}
-        onChange={(e) => setId(e.target.value)}
+        onChange={handleIdChange} // Use the custom handler for ID input
       />
       <div className='mb-4'>
         <select
-        id='Gender'
           className='form-select'
           value={gender}
           onChange={(e) => setGender(e.target.value)}
         >
           <option value=''>בחר מין</option>
-          <option value='זכר'>ז</option>
-          <option value='נקבה'>נ</option>
+          <option value='ז'>ז</option>
+          <option value='נ'>נ</option>
         </select>
       </div>
-      <MDBBtn type='submit' className='bg-light text-dark' disabled={isSubmitDisabled}>
+      <MDBBtn type='submit' className='bg-light text-dark ' disabled={isSubmitDisabled}>
         הוספה
       </MDBBtn>
     </form>

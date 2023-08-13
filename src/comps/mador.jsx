@@ -6,13 +6,13 @@ import { UserContext } from '../context/userContext';
 
 
 function Mador() {
-  const {soliders, setSoliders} = useContext(UserContext);
+  const {soliders, updateSoliders} = useContext(UserContext);
   const getSoliders = async () => {
     try {
       let res = await doApiGet('http://localhost:3001/getAllSoldiers');
       //  && res.status === 200
       if (res) {
-        setSoliders(res.data);
+        updateSoliders(res.data);
       } else {
         alert('שגיאה בטעינת חיילים אנא נסה מאוחר יותר!');
       }
@@ -30,7 +30,6 @@ function Mador() {
       <div className="container py-5">
         {soliders.length > 0 && 
         <ModalSoliders />
-        // <button type="button" class="btn btn-secondary btn-rounded">הצג חיילים</button>
         }
       </div></div>
 
