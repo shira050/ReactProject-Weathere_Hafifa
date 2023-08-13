@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './css/header.css'
 
 export default function Haeder() {
   return (
-    <nav dir="rtl" class=" navbar bg-dark">
+    <nav dir="rtl" class="bg-dark">
       <div class="container-fluid">
-        <Link class="navbar-brand text-light" to='/'>ראשי</Link>
-        <Link class="navbar-brand text-light" to='/mador'>מדור</Link>
+        <Link class="navLink" to='/'>ראשי</Link>
+        <Link class="navLink" to='/mador'>מדור</Link>
       </div>
     </nav>
   )

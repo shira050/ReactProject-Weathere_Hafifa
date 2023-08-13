@@ -2,10 +2,11 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { doApiGet } from '../services/apiBasic';
 import ModalSoliders from './modalSoliders';
+import { UserContext } from '../context/userContext';
 
 
 function Mador() {
-  const [soliders, setSoliders] = useState([]);
+  const {soliders, setSoliders} = useContext(UserContext);
   const getSoliders = async () => {
     try {
       let res = await doApiGet('http://localhost:3001/getAllSoldiers');
@@ -28,7 +29,7 @@ function Mador() {
     <div className="container-fluid  text-center ">
       <div className="container py-5">
         {soliders.length > 0 && 
-        <ModalSoliders soliders={soliders}/>
+        <ModalSoliders />
         // <button type="button" class="btn btn-secondary btn-rounded">הצג חיילים</button>
         }
       </div></div>

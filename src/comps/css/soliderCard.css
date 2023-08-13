@@ -1,0 +1,11 @@
+.imgProfile{
+    border-radius: 50%;
+    margin: auto;
+    
+}
+.profileCard{
+    display: flex;
+    width: 30%;
+    padding: 10px 5px;
+
+}
