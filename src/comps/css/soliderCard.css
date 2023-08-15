@@ -10,9 +10,10 @@
 
 .profileCard {
     display: flex;
-    width: 30%;
     padding: 10px 5px;
-    min-width: 40%;
+    /* width: 150px; */
+     min-width: 20%;
+    max-width: 30%;
     border-radius: 5px;
     background: #f5f5f5;
 }

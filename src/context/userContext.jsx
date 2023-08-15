@@ -9,14 +9,15 @@ const UserProvider = ({ children }) => {
   const updateUser = (newUser) => {
     setCurrentUser(newUser);
   };
+
   const updateSoliders = (soliders) => {
-    console.log(soliders);
-    // soliders=soliders.sort((s1, s2)=>{return s2.Age-s1.Age});
+    debugger
+    soliders=soliders.sort((s1, s2)=>{return s2.Age-s1.Age});
     soliders.sort((a, b)=> {
       return a.Last_Name.localeCompare(b.Last_Name) ||
              a.First_Name.localeCompare(b.First_Name)
   });
-    console.log(soliders);
+ 
     setSoliders(soliders);
   };
 

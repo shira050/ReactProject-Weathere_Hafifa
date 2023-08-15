@@ -1,10 +1,12 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
 import './css/soliderCard.css'
+// import '../assets/whethereImges/profile/menProfile.png'
+// import '../assets/whethereImges/profile/womenProfile.png'
 export default function SoliderCard(props) {
   let currentSolider = props.solider;
   return (
-    <div className=' m-1 profileCard col-3'>
+    <div className='m-1 profileCard col-md-2'>
       <div className='col-4'>
         <img width={'100%'} className='imgProfile' src=
           {currentSolider.Gender == 'ז' ?
@@ -16,8 +18,8 @@ export default function SoliderCard(props) {
       </div>
       <div className='col'>
         <p>{currentSolider.Last_Name} {currentSolider.First_Name}</p>
-        <p>{currentSolider.Role}, {currentSolider.Age} </p>
-        {/* <p>{currentSolider.Last_Name} {currentSolider.First_Name}</p> */}
+        <p>{currentSolider.Rank}, {currentSolider.Age} </p>
+        <p>{currentSolider.Rank}, {currentSolider.Role} </p>
       </div>
 
     </div>

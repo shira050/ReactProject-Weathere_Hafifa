@@ -4,39 +4,54 @@ import { UserContext } from '../context/userContext';
 
 export default function AddSoliderForm() {
   const { soliders, setSoliders } = useContext(UserContext);
-  const [name, setName] = useState('');
-  const [id, setId] = useState('');
-  const [gender, setGender] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    userName: '',
+    id: '',
+    gender: '',
+  });
 
-  const addNewSolider = (newSolider) => {
-    setSoliders([...soliders, newSolider]);
-    alert('חייל/ת נוסף/ה בהצלחה!');
+  const handleInputChange = (field, value) => {
+    setFormData({ ...formData, [field]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    if (!formData.name || !formData.userName || !formData.id || !formData.gender) {
+      alert('Please fill in all fields.');
+      return;
+    }
+
     const newSoldier = {
-      name: name,
-      id: id,
-      gender: gender,
+      ...formData,
+      Mispar_Ishi: generateMisparIshi(), // Generate a unique ID
+      First_Name: 'יותם', // Static value
+      Last_Name: 'גבריאל', // Static value
+      Role: 'קפ"ט', // Static value
+      Rank: 'סרן', // Static value
+      City: 'רמת גן', // Static value
+      City_Location: 'מרכז', // Static value
+      Is_Officer: true, // Static value
+      Age: 28, // Static value
     };
 
-    addNewSolider(newSoldier);
+    setSoliders([...soliders, newSoldier]);
+    alert('חייל/ת נוסף/ה בהצלחה!');
 
     // Clear input fields after submission
-    setName('');
-    setId('');
-    setGender('');
+    setFormData({
+      name: '',
+      userName: '',
+      id: '',
+      gender: '',
+    });
   };
 
-  // Disable submit button until all fields are filled
-  const isSubmitDisabled = !name || !id || !gender;
-
-  const handleIdChange = (e) => {
-    // Allow only numbers
-    const inputValue = e.target.value.replace(/\D/g, '');
-    setId(inputValue);
+  // Generate a unique Mispar_Ishi (you can implement your own logic)
+  const generateMisparIshi = () => {
+    // Implement your own logic to generate a unique ID
+    return Math.floor(Math.random() * 10000000).toString();
   };
 
   return (
@@ -46,29 +61,37 @@ export default function AddSoliderForm() {
         id='name_solider'
         type='text'
         placeholder='שם החייל'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        value={formData.name}
+        onChange={(e) => handleInputChange('name', e.target.value)}
+      />
+      <MDBInput
+        wrapperClass='mb-4'
+        id='user_name'
+        type='text'
+        placeholder='שם משתמש'
+        value={formData.userName}
+        onChange={(e) => handleInputChange('userName', e.target.value)}
       />
       <MDBInput
         wrapperClass='mb-4'
         id='id_solider'
         type='text' // Change the input type to 'text'
         placeholder='מספר אישי'
-        value={id}
-        onChange={handleIdChange} // Use the custom handler for ID input
+        value={formData.id}
+        onChange={(e) => handleInputChange('id', e.target.value)}
       />
       <div className='mb-4'>
         <select
           className='form-select'
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
+          value={formData.gender}
+          onChange={(e) => handleInputChange('gender', e.target.value)}
         >
           <option value=''>בחר מין</option>
           <option value='ז'>ז</option>
           <option value='נ'>נ</option>
         </select>
       </div>
-      <MDBBtn type='submit' className='bg-light text-dark ' disabled={isSubmitDisabled}>
+      <MDBBtn type='submit' className='bg-light text-dark '>
         הוספה
       </MDBBtn>
     </form>
