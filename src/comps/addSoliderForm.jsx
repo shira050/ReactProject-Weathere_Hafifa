@@ -3,7 +3,7 @@ import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 import { UserContext } from '../context/userContext';
 
 export default function AddSoliderForm() {
-  const { soliders, setSoliders } = useContext(UserContext);
+  const { soliders, updateSoliders } = useContext(UserContext);
   const [formData, setFormData] = useState({
     name: '',
     userName: '',
@@ -36,7 +36,7 @@ export default function AddSoliderForm() {
       Age: 28, // Static value
     };
 
-    setSoliders([...soliders, newSoldier]);
+    updateSoliders([...soliders, newSoldier]);
     alert('חייל/ת נוסף/ה בהצלחה!');
 
     // Clear input fields after submission
