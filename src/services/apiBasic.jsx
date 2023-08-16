@@ -6,7 +6,11 @@ export const API_URL = "http://localhost:3001";
 export const USER = "user";
 
 export const doApiGet = async (_url) => {
-  let currentUser = JSON.parse(localStorage[USER]);
+  let currentUser;
+
+  if(localStorage[USER]){
+    currentUser= JSON.parse(localStorage[USER]);
+} 
   
   try {
     let resp = await axios.get(_url, {
@@ -22,17 +26,15 @@ export const doApiGet = async (_url) => {
 };
 
 // For Post,delete, put, patch
-export const doApiMethod = async (_url, _method, _body = {}) => {
+export const doApiMethod = async (_url, _method, _body = {}, _headers= {}) => {
+
   try {
+    debugger
     let resp = await axios({
       url: _url,
       method: _method,
       data: _body,
-      headers: {
-        user_name: _body.name,
-        user_mispar_ishi: _body.password
-
-      },
+      headers: _headers,
     });
     return resp;
   } catch (err) {

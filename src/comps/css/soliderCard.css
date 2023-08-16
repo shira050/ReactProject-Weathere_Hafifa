@@ -1,19 +1,37 @@
 .imgProfile {
     border-radius: 50%;
     margin: auto;
-    display: flex;
+   
+
+}
+.cardProfile{
+     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
 
-
+.officerIcon {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    bottom: 15%;
+    left: 2%;
 }
 
 .profileCard {
     display: flex;
     padding: 10px 5px;
     /* width: 150px; */
-     min-width: 20%;
+    min-width: 20%;
     max-width: 30%;
     border-radius: 5px;
     background: #f5f5f5;
+    cursor: pointer;
+
+}
+
+.selected-card {
+    border: 2px solid blue;
 }

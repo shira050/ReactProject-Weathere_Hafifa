@@ -6,7 +6,12 @@ import weatherData from '../assets/apiRequest.json'
 export const doApiLogin = async (bodyData) => {
   let url = API_URL + "/login";
   try {
-    let resp = await doApiMethod(url, "POST", bodyData);
+    debugger
+    let resp = await doApiMethod(url, "POST", bodyData, {
+      user_name: bodyData.name,
+      user_mispar_ishi: bodyData.password
+
+    });
     return resp;
   } catch (err) {
     return err.response;

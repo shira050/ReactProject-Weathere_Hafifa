@@ -8,7 +8,10 @@ import { UserContext } from '../context/userContext';
 function Main() {
     const { currentUser, updateUser } = useContext(UserContext);
     const getUser = async () => {
-        let localUser = JSON.parse(localStorage[USER]);
+        let localUser;
+        if(localStorage[USER]){
+            localUser= JSON.parse(localStorage[USER]);
+        } 
         let res = await doApiLogin(localUser);
         return res;
     }
