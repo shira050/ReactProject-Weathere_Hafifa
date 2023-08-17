@@ -18,6 +18,8 @@
     border-radius: 50%;
     bottom: 15%;
     left: 2%;
+    border: 1px solid #000;
+
 }
 
 .profileCard {

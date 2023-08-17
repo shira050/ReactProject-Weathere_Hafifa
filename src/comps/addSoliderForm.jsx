@@ -68,7 +68,7 @@ export default function AddSoliderForm(props) {
   };
 console.log(errorSolider);
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="d-flex flex-column">
       <MDBInput
         wrapperClass='mb-4'
         id='name_solider'
@@ -129,7 +129,7 @@ console.log(errorSolider);
         </select>
       </div>
       
-        <MDBBtn type='submit' className='bg-light text-dark '
+        <MDBBtn type='submit' className='bg-light text-dark align-self-end' 
         disabled={errorSolider.First_Name.length>0  || errorSolider.Mispar_Ishi.length>0 || errorSolider.User_Name.length>0||(!newSolider.First_Name || !newSolider.User_Name || !newSolider.Mispar_Ishi || !newSolider.Gender)}
         >
           הוספה
