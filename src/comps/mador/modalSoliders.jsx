@@ -103,14 +103,10 @@ export default function ModalSoliders() {
         setSelectedCards(allIds);
     };
     const deleteSelectedCards = () => {
-        if (selectedCards.length > 0) {
-            const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
-            updateSoliders(updatedSoliders);
-            setSelectedCards([]);
-            setIsUpdated(true);
-        } else {
-            alert('לא נבחרו חיילים למחיקה.');
-        }
+        const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
+        updateSoliders(updatedSoliders);
+        setSelectedCards([]);
+        setIsUpdated(true);
     };
 
     return (
@@ -153,26 +149,32 @@ export default function ModalSoliders() {
 
 
                                 <div className='scroll-container'>
-                                    {Object.keys(groupedBy).map((title) => (
-                                        <div key={title}>
-                                            <h5>
-                                                {title === 'ז' || title === 'נ' ?
-                                                    (title === 'ז' ? 'זכר' : 'נקבה')
-                                                    : title
-                                                }
-                                            </h5>
-                                            <div className='solider-list row'>
-                                                {groupedBy[title].map((solider) => (
-                                                    <SoliderCard
-                                                        key={solider.Mispar_Ishi}
-                                                        solider={solider}
-                                                        isSelected={selectedCards.includes(solider.Mispar_Ishi)}
-                                                        toggleSelect={(id) => toggleSelect(id)}
-                                                    />))}
+                                    {soliders.length > 0 ? (
+                                        Object.keys(groupedBy).map((title) => (
+                                            <div key={title}>
+                                                <h5>
+                                                    {title === 'ז' || title === 'נ' ?
+                                                        (title === 'ז' ? 'זכר' : 'נקבה')
+                                                        : title
+                                                    }
+                                                </h5>
+                                                <div className='solider-list row'>
+                                                    {groupedBy[title].map((solider) => (
+                                                        <SoliderCard
+                                                            key={solider.Mispar_Ishi}
+                                                            solider={solider}
+                                                            isSelected={selectedCards.includes(solider.Mispar_Ishi)}
+                                                            toggleSelect={(id) => toggleSelect(id)}
+                                                        />
+                                                    ))}
+                                                </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))
+                                    ) : (
+                                        <p>אין כרגע חיילים להצגה.</p>
+                                    )}
                                 </div>
+
 
 
 
