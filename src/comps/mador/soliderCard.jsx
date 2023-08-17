@@ -1,9 +1,7 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, MDBBtn } from 'mdb-react-ui-kit';
-import './css/soliderCard.css'
-import OfficerIcon from './icons/officer';
-// import '../assets/whethereImges/profile/menProfile.png'
-// import '../assets/whethereImges/profile/womenProfile.png'
+import '../css/soliderCard.css'
+import OfficerIcon from '../icons/officer';
 export default function SoliderCard(props) {
   let currentSolider = props.solider;
   const { solider, isSelected, toggleSelect } = props;

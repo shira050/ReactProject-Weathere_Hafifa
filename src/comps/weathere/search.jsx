@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { MDBCol, MDBIcon } from "mdbreact";
-import { CityContext } from "../context/cityContext";
-import { doApiGetCityByName, getCityDetails } from "../services/apiService";
+import { CityContext } from "../../context/cityContext";
+import { doApiGetCityByName, getCityDetails } from "../../services/apiService";
 import { MDBBtn } from "mdb-react-ui-kit";
 
 const Search = () => {

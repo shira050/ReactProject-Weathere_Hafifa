@@ -13,12 +13,12 @@ import {
 import SoliderCard from './soliderCard';
 import AddSoliderForm from './addSoliderForm';
 import * as React from "react";
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../../context/userContext';
 import { useContext } from 'react';
 import { useEffect } from 'react';
-import ArrowIcon from './icons/arowIcon';
-import { UpdateMadorSoliders } from '../services/apiSoliders';
-import '../comps/css/modalSoliders.css'
+import ArrowIcon from '../icons/arowIcon';
+import { UpdateMadorSoliders } from '../../services/apiSoliders';
+import '../../comps/css/modalSoliders.css'
 import Alert from './alert';
 
 
@@ -32,9 +32,9 @@ export default function ModalSoliders() {
     const [groupedBy, setGroupedBy] = useState({});
     const [isUpdated, setIsUpdated] = useState(false);
     const [selectedCards, setSelectedCards] = useState([]);
-     const [error, setError] = useState({title:'',messege:''});
+    const [error, setError] = useState({ title: '', messege: '' });
 
-     useEffect(() => {
+    useEffect(() => {
         sortSolidersBy('City_Location');
 
         const interval = setInterval(() => {
@@ -72,6 +72,7 @@ export default function ModalSoliders() {
         debugger
         (basicModal && isUpdated) ? window.confirm('שים לב שישנם שינויים שלא נשמרו!') && setBasicModal(!basicModal) : setBasicModal(!basicModal);
     }
+
     const updateSolidersInServer = async () => {
         if (isUpdated) {
 
@@ -92,7 +93,7 @@ export default function ModalSoliders() {
         }
 
     }
-    
+
 
     const clearSelection = () => {
         setSelectedCards([]);

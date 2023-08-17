@@ -1,5 +1,5 @@
 import React from 'react'
-import '../assets/whethereImges/sun.jpg'
+import '../../assets/whethereImges/sun.jpg'
 import { useTranslation } from 'react-i18next';
 
 function CardWeathereDay(props) {

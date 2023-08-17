@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
-import './css/home.css';
+import '../css/home.css';
 import Search from './search';
-import '../assets/whethereImges/cloudAndSun.jpg';
-import CardWeathereDay from './cardWeathereDay';
-import { USER } from '../services/apiBasic';
-import { UserContext } from '../context/userContext';
-import { CityContext } from '../context/cityContext';
-import { doApiGetCities, doApiGetCityByName, getCityDetails, getWethereBylatlan } from '../services/apiService';
+import '../../assets/whethereImges/cloudAndSun.jpg';
+import { USER } from '../../services/apiBasic';
+import { UserContext } from '../../context/userContext';
+import { CityContext } from '../../context/cityContext';
+import { doApiGetCities, doApiGetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
-import '../assets/loading_gif.gif'
-import axios from 'axios';
+import '../../assets/loading_gif.gif'
+import CardWeathereDay from './cardWeathereDay';
 
 
 export default function Home() {

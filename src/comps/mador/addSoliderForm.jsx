@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../../context/userContext';
 
 export default function AddSoliderForm(props) {
   const { soliders, updateSoliders } = useContext(UserContext);

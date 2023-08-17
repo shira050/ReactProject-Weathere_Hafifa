@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from 'react'
 import Login from './login'
-import Home from './Home'
 import { USER } from '../services/apiBasic';
 import { doApiLogin } from '../services/apiService';
 import { UserContext } from '../context/userContext';
+import Home from './weathere/Home';
 
 function Main() {
     const { currentUser, updateUser } = useContext(UserContext);

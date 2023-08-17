@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { doApiGet } from '../services/apiBasic';
+import { doApiGet } from '../../services/apiBasic';
 import ModalSoliders from './modalSoliders';
-import { UserContext } from '../context/userContext';
+import { UserContext } from '../../context/userContext';
 
 
 function Mador() {
