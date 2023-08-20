@@ -19,7 +19,9 @@ import { useEffect } from 'react';
 import ArrowIcon from '../icons/arowIcon';
 import { UpdateMadorSoliders } from '../../services/apiSoliders';
 import '../../comps/css/modalSoliders.css'
-import Alert from './alert';
+import SelectedCardsEvents from './selectedCardsEvents';
+import SelectSortBy from './selectSortBy';
+import DisplaySoliders from './displaySoliders';
 
 
 
@@ -30,94 +32,27 @@ export default function ModalSoliders() {
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
     const { soliders, updateSoliders } = useContext(UserContext);
     const [groupedBy, setGroupedBy] = useState({});
-    const [isUpdated, setIsUpdated] = useState(false);
-    const [selectedCards, setSelectedCards] = useState([]);
-    const [error, setError] = useState({ title: '', messege: '' });
+    const [isUpdated, setIsUpdated] = useState(false);//האם יש שינויים לשמירה בשרת
 
     useEffect(() => {
-        console.log('awodajiwdajwd', soliders)
-        sortSolidersBy('City_Location');
-
         const interval = setInterval(() => {
             setCurrentTime(new Date().toLocaleString());
         }, 20000);
 
         return () => clearInterval(interval);
-    }, [soliders, updateSoliders]);
+    }, [soliders]);
 
-    const toggleSelect = (id) => {
-        if (selectedCards.includes(id)) {
-            setSelectedCards(selectedCards.filter((selectedId) => selectedId !== id));
-        } else {
-            setSelectedCards([...selectedCards, id]);
-        }
-    };
-    const groupBy = (arr, property, separator = '-') => {
-        return arr.reduce((groups, item) => {
-            const value = property === 'Rank+Role' ? `${item.Rank}${separator}${item.Role}` : item[property];
-            if (!groups[value]) {
-                groups[value] = [];
-            }
-            groups[value].push(item);
-            return groups;
-        }, {});
-    };
 
-    const sortSolidersBy = async (sortBy) => {
-        const newGroupedBy = groupBy(soliders, sortBy, sortBy === 'Rank+Role' ? ',' : undefined);
-        await setGroupedBy(newGroupedBy);
-    };
 
 
     const toggleShow = () => {
         (basicModal && isUpdated) ? window.confirm('שים לב שישנם שינויים שלא נשמרו!') && setBasicModal(!basicModal) : setBasicModal(!basicModal);
     }
 
-    const updateSolidersInServer = async () => {
-        if (isUpdated) {
-
-            let res = await UpdateMadorSoliders(soliders);
-            console.log(res);
-
-            if (res && res.status == 200) {
-                setBasicModal(!basicModal);
-                await setIsUpdated(false);
-                alert("שינויים נשמרו בהצלחה!")
-            }
-            else if (res && res.status != 200) {
-                alert(res.data.error)
-            }
-            else {
-                alert("שגיאה בשמירת חיילים חדשים נסה שוב...")
-            }
-        }
-        else {
-            alert('אין שינויים לשמירה.')
-        }
-
-    }
-
-
-    const clearSelection = () => {
-        setSelectedCards([]);
-    };
-    const handleSelectAll = () => {
-        const allIds = soliders.map((solider) => solider.Mispar_Ishi);
-        setSelectedCards(allIds);
-    };
-    const deleteSelectedCards = async() => {
-        const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
-        console.log(updatedSoliders)
-      await  updateSoliders(updatedSoliders);
-        setSelectedCards([]);
-        setIsUpdated(true);
-    };
-
     return (
         <>
-
-
             <MDBBtn onClick={toggleShow}>הצג חיילים</MDBBtn>
+
             <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1'>
                 <MDBModalDialog style={{ maxWidth: '75%', height: '90vh' }}>
                     <MDBModalContent >
@@ -137,77 +72,21 @@ export default function ModalSoliders() {
 
                         <MDBModalBody>
                             <AddSoliderForm changeIsUpdated={(status) => setIsUpdated(status)} />
+
                             <div className='row text-end'>
-                                <div className='mb-4'>
-                                    <label>סדר לפי:</label>
-                                    <select
-                                        className=''
-                                        onChange={(e) => { sortSolidersBy(e.target.value) }}
-                                    >
-                                        <option value='City'> עיר</option>
-                                        <option value='Gender'>מין</option>
-                                        <option value='City_Location'>מיקום עיר בארץ</option>
-                                        <option value='Rank+Role'>תפקיד+דרגה  </option>
-                                    </select>
-                                </div>
+                                <SelectSortBy soliders={soliders} setGroupedBy={setGroupedBy} />
 
-
-                                <div className='scroll-container'>
-                                    {soliders.length > 0 ? (
-                                        Object.keys(groupedBy).map((title) => (
-                                            <div key={title}>
-                                                <h5>
-                                                    {title === 'ז' || title === 'נ' ?
-                                                        (title === 'ז' ? 'זכר' : 'נקבה')
-                                                        : title
-                                                    }
-                                                </h5>
-                                                <div className='solider-list d-flex' style={{flexWrap:'wrap'}}>
-                                                    {groupedBy[title].map((solider) => (
-                                                        <SoliderCard
-                                                            key={solider.Mispar_Ishi}
-                                                            solider={solider}
-                                                            isSelected={selectedCards.includes(solider.Mispar_Ishi)}
-                                                            toggleSelect={(id) => toggleSelect(id)}
-                                                        />
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <p>אין כרגע חיילים להצגה.</p>
-                                    )}
-                                </div>
-
-
-
-
-
-
-
+                                <DisplaySoliders groupedBy={groupedBy} />
                             </div>
                         </MDBModalBody>
 
                         <MDBModalFooter>
-                            <MDBBtn color='secondary' onClick={updateSolidersInServer}>
-                                שמירה
-                            </MDBBtn>
-                            <MDBBtn color='secondary' onClick={handleSelectAll}>
-                                בחר הכל
-                            </MDBBtn>
-                            {selectedCards.length > 0 &&
-                                <>  <MDBBtn color='secondary' onClick={clearSelection}>
-                                    נקה הכל
-                                </MDBBtn>
-                                    <MDBBtn color='secondary' onClick={deleteSelectedCards}>
-                                        מחיקת מסומנים
-                                    </MDBBtn>
-                                </>}
+                            <SelectedCardsEvents isUpdated={isUpdated} setIsUpdated={setIsUpdated}
+                                basicModal={basicModal} setBasicModal={setBasicModal} />
                         </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>
             </MDBModal>
-            {/* {error&&<Alert title={error.title} messege={error.messege} setError={setError}/>} */}
         </>
     );
 }

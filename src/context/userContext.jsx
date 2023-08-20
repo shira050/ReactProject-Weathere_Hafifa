@@ -5,6 +5,8 @@ const UserContext = createContext();
 const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [soliders, setSoliders] = useState([]);
+  const [selectedCards, setSelectedCards] = useState([]);
+
 
   const updateUser = (newUser) => {
     setCurrentUser(newUser);
@@ -20,7 +22,7 @@ const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ currentUser, updateUser,soliders, updateSoliders }}>
+    <UserContext.Provider value={{ currentUser, updateUser,soliders, updateSoliders,selectedCards, setSelectedCards }}>
       {children}
     </UserContext.Provider>
   );
