@@ -7,7 +7,6 @@ import { API_URL, doApiMethod, doApiGet, USER } from "./apiBasic";
 
 
 export const UpdateMadorSoliders = async (soliders) => {
-    debugger
     let url = API_URL + "/updateMadorSoldiers";
     try {
         let resp = await doApiMethod(url, "PUT",

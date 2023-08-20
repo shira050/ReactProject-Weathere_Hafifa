@@ -21,7 +21,7 @@ function Main() {
             if (localStorage[USER]) {
                 let res = await getUser();
                 console.log(res);
-                updateUser(res.data);
+               res&& updateUser(res.data);
             }
         };
 

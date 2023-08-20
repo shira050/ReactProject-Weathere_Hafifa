@@ -6,7 +6,6 @@ import weatherData from '../assets/apiRequest.json'
 export const doApiLogin = async (bodyData) => {
   let url = API_URL + "/login";
   try {
-    debugger
     let resp = await doApiMethod(url, "POST", bodyData, {
       user_name: bodyData.name,
       user_mispar_ishi: bodyData.password
@@ -36,7 +35,8 @@ export const doApiGetCities = async () => {
 
 export const getCityDetails = async (currentCityName) => {
   let cityRes = await doApiGetCityByName(currentCityName);
-  let res = await getWethereBylatlan(cityRes.data.latitude, cityRes.data.longitude);
+  let res;
+  if (cityRes) res = await getWethereBylatlan(cityRes.data.latitude, cityRes.data.longitude);
   return res;
 }
 export const doApiGetCityByName = async (cityName) => {
@@ -70,12 +70,10 @@ export const chooseColor = async (feels_likeArr, tempArr) => {
   let cntHotestTime = 0, degreeColor = '';
   let timeDayArr = ['day', 'eve', 'morn', 'night'];
   timeDayArr.map((i) => {
-    debugger
     if (feels_likeArr[i] > tempArr[i])
       cntHotestTime++;
   }
   )
-  debugger
   if (cntHotestTime == 1) {
     degreeColor = 'gray';
   } else if (cntHotestTime == 2) {

@@ -11,7 +11,7 @@ export default function SoliderCard(props) {
   };
 
   return (
-    <div className={`m-1 profileCard col-md-2 ${isSelected ? 'selected-card ' : ''}`} onClick={handleSelect}>
+    <div className={`m-1 profileCard ${isSelected ? 'selected-card ' : ''}`} onClick={handleSelect}>
       <div className='col-4 cardProfile'>
         <img
           width={'100%'}

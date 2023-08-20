@@ -35,6 +35,7 @@ export default function ModalSoliders() {
     const [error, setError] = useState({ title: '', messege: '' });
 
     useEffect(() => {
+        console.log('awodajiwdajwd', soliders)
         sortSolidersBy('City_Location');
 
         const interval = setInterval(() => {
@@ -42,7 +43,7 @@ export default function ModalSoliders() {
         }, 20000);
 
         return () => clearInterval(interval);
-    }, [soliders]);
+    }, [soliders, updateSoliders]);
 
     const toggleSelect = (id) => {
         if (selectedCards.includes(id)) {
@@ -69,7 +70,6 @@ export default function ModalSoliders() {
 
 
     const toggleShow = () => {
-        debugger
         (basicModal && isUpdated) ? window.confirm('שים לב שישנם שינויים שלא נשמרו!') && setBasicModal(!basicModal) : setBasicModal(!basicModal);
     }
 
@@ -80,15 +80,18 @@ export default function ModalSoliders() {
             console.log(res);
 
             if (res && res.status == 200) {
+                setBasicModal(!basicModal);
                 await setIsUpdated(false);
-                toggleShow();
+                alert("שינויים נשמרו בהצלחה!")
+            }
+            else if (res && res.status != 200) {
+                alert(res.data.error)
             }
             else {
                 alert("שגיאה בשמירת חיילים חדשים נסה שוב...")
             }
         }
         else {
-            // setError({messege:'אין שינויים לשמירה.',title:'שגיאה!'});
             alert('אין שינויים לשמירה.')
         }
 
@@ -102,9 +105,10 @@ export default function ModalSoliders() {
         const allIds = soliders.map((solider) => solider.Mispar_Ishi);
         setSelectedCards(allIds);
     };
-    const deleteSelectedCards = () => {
+    const deleteSelectedCards = async() => {
         const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
-        updateSoliders(updatedSoliders);
+        console.log(updatedSoliders)
+      await  updateSoliders(updatedSoliders);
         setSelectedCards([]);
         setIsUpdated(true);
     };
@@ -158,7 +162,7 @@ export default function ModalSoliders() {
                                                         : title
                                                     }
                                                 </h5>
-                                                <div className='solider-list row'>
+                                                <div className='solider-list d-flex' style={{flexWrap:'wrap'}}>
                                                     {groupedBy[title].map((solider) => (
                                                         <SoliderCard
                                                             key={solider.Mispar_Ishi}

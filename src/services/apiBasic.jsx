@@ -29,7 +29,6 @@ export const doApiGet = async (_url) => {
 export const doApiMethod = async (_url, _method, _body = {}, _headers= {}) => {
 
   try {
-    debugger
     let resp = await axios({
       url: _url,
       method: _method,

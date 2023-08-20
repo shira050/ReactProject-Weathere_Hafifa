@@ -39,6 +39,17 @@ option:hover {
 }
 
 .solider-list {
-    margin-top: 10px; /* מרווח מעל הרשימה של החיילים */
+    margin-top: 10px; 
 }
+input ,.gender-select{
+    outline: 0;
+    border-width: 0 0 2px;
+    width: 100%;
+  }
+  input:focus, .gender-select:focus {
+    border-color: blue;
+  }
+  .gender-select{
+    width: 100%;
+  }
 

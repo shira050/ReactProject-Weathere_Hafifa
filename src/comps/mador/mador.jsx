@@ -28,9 +28,7 @@ function Mador() {
   return (
     <div className="container-fluid  text-center ">
       <div className="container py-5">
-        {soliders.length > 0 && 
         <ModalSoliders />
-        }
       </div></div>
 
   )

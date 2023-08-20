@@ -10,7 +10,6 @@ const Search = () => {
   const inputRef = useRef();
 
   const serchCountry = async () => {
-    debugger
     const selectedCity = JSON.parse(inputRef.current.value);
     updateCurrentCity(selectedCity);
   };

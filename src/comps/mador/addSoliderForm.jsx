@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
 import { UserContext } from '../../context/userContext';
 
+
 export default function AddSoliderForm(props) {
   const { soliders, updateSoliders } = useContext(UserContext);
   const [newSolider, setNewSolider] = useState({
@@ -69,7 +70,7 @@ export default function AddSoliderForm(props) {
 console.log(errorSolider);
   return (
     <form onSubmit={handleSubmit} className="d-flex flex-column">
-      <MDBInput
+      <input
         wrapperClass='mb-4'
         id='name_solider'
         type='text'
@@ -85,7 +86,7 @@ console.log(errorSolider);
         }
       />
       <p className='text-danger'>{errorSolider.First_Name}</p>
-      <MDBInput
+      <input
         wrapperClass='mb-4'
         id='user_name'
         type='text'
@@ -101,7 +102,7 @@ console.log(errorSolider);
         }
       />
       <p className='text-danger'>{errorSolider.User_Name}</p>
-      <MDBInput
+      <input
         wrapperClass='mb-4'
         id='id_solider'
         type='text'
@@ -119,7 +120,7 @@ console.log(errorSolider);
       <p className='text-danger'>{errorSolider.Mispar_Ishi}</p>
       <div className='mb-4'>
         <select
-          className='form-select'
+          className='gender-select'
           value={newSolider.Gender}
           onChange={(e) => handleInputChange('Gender', e.target.value)}
         >

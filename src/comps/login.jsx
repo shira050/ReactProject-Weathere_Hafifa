@@ -52,6 +52,9 @@ function Login() {
            alert('Welcome ' + userName);
            nav('/');
            }
+           else if(!res){
+            alert("יש לנו שגיאה בשרת נסה מאוחר יותר....")
+           }
            else{
                alert("אחד או יותר מהפרטים שגוי...")
            }
