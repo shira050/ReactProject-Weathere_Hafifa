@@ -115,47 +115,50 @@ export default function Home() {
 
 
   return (
-    <div className="container-fluid bg-img text-center ">
-      <div className="container py-5">
-        {currentUser && <h2 className="display-5">שלום {currentUser.First_Name} {currentUser.Last_Name}</h2>}
-        <Search></Search>
-        {loading ? (
-          <div >
-            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
-            <p className='display-7'>Loading...</p>
-          </div>
-        ) : (
-          <div style={{position:'relative'}}>
-            <div className="bg-light bg-opacity h-75 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{minHeight:'450px',alignItems:'center'}}>
-             
-              <div className="col-8">
-                <h2 className="">היום</h2>
-                <p className="display-4">{currentCity.city}</p>
-                {temp && (
-                  <>
-                    <p>{tempDay}&deg;</p>
-                    <p>{description}</p>
-                  </>
-                )}
-              </div>
-              <div className="col-4">
-                <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} alt={description} className="h-100 w-100" />
-              </div>
+      <div className="container-fluid bg-img text-center ">
+        <div className="container py-5">
+          {currentUser && <h2 className="display-5">שלום {currentUser.First_Name} {currentUser.Last_Name}</h2>}
+          <Search></Search>
+          {loading ? (
+            <div >
+              <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
+              <p className='display-7'>Loading...</p>
             </div>
-
-            <div style={{position:'absolute', bottom: "-45%",width:"100%" }}>
-              {temp && (
-                <div className="row justify-content-between" >
-                  {temp.daily.map((x, i) => {
-                    if (i > 0&&i<6) return <CardWeathereDay day={x} i={i} />;
-                  })}
+          ) : (
+            <div style={{position:'relative'}}>
+              {temp?(
+                <>
+              
+              <div className="bg-light bg-opacity h-75 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{minHeight:'450px',alignItems:'center'}}>
+               
+                <div className="col-8">
+                  <h2 className="">היום</h2>
+                  <p className="display-4">{currentCity.city}</p>
+                      <p>{tempDay}&deg;</p>
+                      <p>{description}</p>
+                                </div>
+                <div className="col-4">
+                  <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} alt={description} className="h-100 w-100" />
                 </div>
-              )}
+              </div>
+  
+              <div style={{position:'absolute', bottom: "-45%",width:"100%" }}>
+              
+                  <div className="row justify-content-between" >
+                    {temp.daily.map((x, i) => {
+                      if (i > 0&&i<6) return <CardWeathereDay day={x} i={i} />;
+                    })}
+                  </div>
+              </div>
+              </>
+              
+              ):<>
+              <p>error {temp&&temp.res&& temp.data}</p>
+              </>}
             </div>
-          </div>
-        )}
-
+          )}
+  
+        </div>
       </div>
-    </div>
-  );
+    );
 }
