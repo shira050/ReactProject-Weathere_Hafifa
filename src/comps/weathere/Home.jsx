@@ -17,9 +17,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   let tempDay, img, description, tempArr, feels_likeArr, currentDay;
   if (temp) {
-    console.log(temp, "lll");
     currentDay = temp.daily[0];
-    console.log(currentDay, 'currentDay');
     tempDay = (((currentDay.temp.max + currentDay.temp.eve) / 2) - 272.15).toFixed(2);
     img = currentDay.weather[0].icon;
     description = currentDay.weather[0].description;
@@ -54,36 +52,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // כיבת api לקובץ
-    // let resArr = [];
-    // const fetchData2 = async () => {
-    //   for (let index = 0; index < cities.length; index++) {
-    //     console.log(cities[index]);
-    //     let res = await getCityDetails(cities[index].city);
-    //     resArr.push(res.data);
-
-    //   };
-    //   debugger
-    //   console.log(resArr);
-    //   try {
-    //     let resp = await axios({
-    //       url: "http://localhost:3002/write/citiesWeathereData.txt",
-    //       method: "POST",
-    //       data: { content: JSON.stringify(resArr) },
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         "Content-Length": "<calculated when request is sent>",
-    //         "Host": "<calculated when request is sent>",
-    //         "User-Agent": "PostmanRuntime/7.32.3",
-    //         "Accept": "*/*",
-    //         "Accept-Encoding": "gzip, deflate, br",
-    //         "Connection": "keep-alive"
-    //       },
-    //     });
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // }
     const fetchData = async () => {
       for (let index = 0; index < cities.length; index++) {
         if (cities[index].city.toLowerCase() === 'jerusalem') {
@@ -93,7 +61,6 @@ export default function Home() {
       }
     };
     fetchData();
-    // cities.length > 0 && fetchData2();
   }, [cities]);
 
   useEffect(() => {

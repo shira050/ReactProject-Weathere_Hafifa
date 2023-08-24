@@ -41,7 +41,6 @@ function SelectedCardsEvents(props) {
     };
     const deleteSelectedCards = async () => {
         const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
-        console.log(updatedSoliders)
         await updateSoliders(updatedSoliders);
         setSelectedCards([]);
         setIsUpdated(true);

@@ -34,7 +34,7 @@ function Login() {
 
         setErrors(errors);
 
-        return Object.keys(errors).length === 0; // Return true if there are no errors
+        return Object.keys(errors).length === 0; 
     };
 
     const login = async () => {
@@ -42,10 +42,7 @@ function Login() {
 
         if (isValid) {
             
-            // Perform login with API call
-           let res= await doApiLogin(user);
-           console.log(res);
-           
+           let res= await doApiLogin(user);           
            if(res&&res.status==200){
                localStorage.setItem('user', JSON.stringify(user));
                updateUser(res.data);

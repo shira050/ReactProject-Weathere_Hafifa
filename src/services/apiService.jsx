@@ -43,7 +43,6 @@ export const doApiGetCityByName = async (cityName) => {
   let url = API_URL + '/cities/' + cityName;
   try {
     let resp = await doApiGet(url);
-    console.log(resp);
     return resp;
   } catch (err) {
     return err.response;

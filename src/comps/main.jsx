@@ -20,7 +20,6 @@ function Main() {
         const fetchData = async () => {
             if (localStorage[USER]) {
                 let res = await getUser();
-                console.log(res);
                res&& updateUser(res.data);
             }
         };

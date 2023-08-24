@@ -27,7 +27,6 @@ function CardWeathereDay(props) {
   else if (cntHotestTime > 2) {
     degreeColor = 'red';
   }
-  console.log(degreeColor);
   return (
     <div className={`m-1 col-2 rounded bg-light bg-opacity-75 `} style={{ color: degreeColor,border:`solid ${degreeColor} 2px ` }}>
       <p className='display-7 font-weight-bold '>

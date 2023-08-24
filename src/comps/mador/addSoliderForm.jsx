@@ -67,7 +67,6 @@ export default function AddSoliderForm(props) {
       Age: 19,
     });
   };
-console.log(errorSolider);
   return (
     <form onSubmit={handleSubmit} className="d-flex flex-column">
       <input
