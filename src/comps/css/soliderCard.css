@@ -1,14 +1,17 @@
 .imgProfile {
     border-radius: 50%;
     margin: auto;
-   
+    width: 100%;
+
 
 }
-.cardProfile{
-     display: flex;
+
+.cardProfile {
+    display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    width: 30%;
 }
 
 .officerIcon {
@@ -19,7 +22,8 @@
     bottom: 15%;
     left: 2%;
     border: 1px solid #000;
-
+    background-color: #fff;
+    text-align: center;
 }
 
 .profileCard {
@@ -29,6 +33,7 @@
     border-radius: 5px;
     background: #f5f5f5;
     cursor: pointer;
+    margin: 10px;
 
 }
 

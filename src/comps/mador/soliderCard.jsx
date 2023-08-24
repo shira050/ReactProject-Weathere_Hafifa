@@ -11,10 +11,9 @@ export default function SoliderCard(props) {
   };
 
   return (
-    <div className={`m-1 profileCard ${isSelected ? 'selected-card ' : ''}`} onClick={handleSelect}>
-      <div className='col-4 cardProfile'>
+    <div className={`profileCard ${isSelected ? 'selected-card ' : ''}`} onClick={handleSelect}>
+      <div className='cardProfile'>
         <img
-          width={'100%'}
           className='imgProfile'
           src={
             currentSolider.Gender === 'ז'
@@ -24,7 +23,7 @@ export default function SoliderCard(props) {
        
        />
        {currentSolider.Is_Officer && (
-             <div className='officerIcon bg-light text-center'>
+             <div className='officerIcon'>
              <OfficerIcon/>
              </div>
         )}

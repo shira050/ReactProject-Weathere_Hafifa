@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { MDBInput, MDBBtn } from 'mdb-react-ui-kit';
+import '../css/addSoliderForm.css'
 import { UserContext } from '../../context/userContext';
 
 
@@ -19,6 +19,21 @@ export default function AddSoliderForm(props) {
     Age: 19,
 
   });
+  const initNewSolider=()=>{
+    setNewSolider({
+      Mispar_Ishi: '',
+      User_Name: '',
+      First_Name: '',
+      Last_Name: ' ',
+      Gender: '',
+      Role: 'קפ"ט',
+      Rank: 'סרן',
+      City: 'רמת גן',
+      City_Location: 'מרכז',
+      Is_Officer: true,
+      Age: 19,
+    });
+  }
   const [errorSolider, setErrorSolider] = useState({
     Mispar_Ishi: '',
     User_Name: '',
@@ -53,24 +68,11 @@ export default function AddSoliderForm(props) {
     props.changeIsUpdated(true);
     alert('חייל/ת נוסף/ה בהצלחה!');
 
-    setNewSolider({
-      Mispar_Ishi: '',
-      User_Name: '',
-      First_Name: '',
-      Last_Name: ' ',
-      Gender: '',
-      Role: 'קפ"ט',
-      Rank: 'סרן',
-      City: 'רמת גן',
-      City_Location: 'מרכז',
-      Is_Officer: true,
-      Age: 19,
-    });
+   initNewSolider();
   };
   return (
-    <form onSubmit={handleSubmit} className="d-flex flex-column">
+    <form onSubmit={handleSubmit}>
       <input
-        wrapperClass='mb-4'
         id='name_solider'
         type='text'
         placeholder='שם החייל'
@@ -84,9 +86,8 @@ export default function AddSoliderForm(props) {
           )
         }
       />
-      <p className='text-danger'>{errorSolider.First_Name}</p>
+      <p>{errorSolider.First_Name}</p>
       <input
-        wrapperClass='mb-4'
         id='user_name'
         type='text'
         placeholder='שם משתמש'
@@ -100,9 +101,8 @@ export default function AddSoliderForm(props) {
           )
         }
       />
-      <p className='text-danger'>{errorSolider.User_Name}</p>
+      <p>{errorSolider.User_Name}</p>
       <input
-        wrapperClass='mb-4'
         id='id_solider'
         type='text'
         placeholder='מספר אישי'
@@ -116,8 +116,8 @@ export default function AddSoliderForm(props) {
           )
         }
       />
-      <p className='text-danger'>{errorSolider.Mispar_Ishi}</p>
-      <div className='mb-4'>
+      <p>{errorSolider.Mispar_Ishi}</p>
+      <div>
         <select
           className='gender-select'
           value={newSolider.Gender}
@@ -129,11 +129,11 @@ export default function AddSoliderForm(props) {
         </select>
       </div>
       
-        <MDBBtn type='submit' className='bg-light text-dark align-self-end' 
+        <button type='submit' className='bg-light text-dark align-self-end' 
         disabled={errorSolider.First_Name.length>0  || errorSolider.Mispar_Ishi.length>0 || errorSolider.User_Name.length>0||(!newSolider.First_Name || !newSolider.User_Name || !newSolider.Mispar_Ishi || !newSolider.Gender)}
         >
           הוספה
-        </MDBBtn>
+        </button>
     </form>
   );
 }

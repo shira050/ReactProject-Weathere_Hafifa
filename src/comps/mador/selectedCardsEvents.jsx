@@ -1,13 +1,11 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../context/userContext';
-import { MDBBtn } from 'mdb-react-ui-kit';
 import { UpdateMadorSoliders } from '../../services/apiSoliders';
 
 function SelectedCardsEvents(props) {
     const { soliders, updateSoliders } = useContext(UserContext);
     const { selectedCards, setSelectedCards } = useContext(UserContext);
-    let isUpdated = props.isUpdated, setIsUpdated = props.setIsUpdated,
-        basicModal = props.basicModal, setBasicModal = props.setBasicModal;
+    let {isUpdated,setIsUpdated,basicModal, setBasicModal }=props;
 
 
     const updateSolidersInServer = async () => {
@@ -47,19 +45,19 @@ function SelectedCardsEvents(props) {
     };
     return (
         <div>
-            <MDBBtn color='secondary' onClick={updateSolidersInServer}>
+            <button color='secondary' onClick={updateSolidersInServer}>
                 שמירה
-            </MDBBtn>
-            <MDBBtn color='secondary' onClick={handleSelectAll}>
+            </button>
+            <button color='secondary' onClick={handleSelectAll}>
                 בחר הכל
-            </MDBBtn>
+            </button>
             {selectedCards.length > 0 &&
-                <>  <MDBBtn color='secondary' onClick={clearSelection}>
+                <>  <button color='secondary' onClick={clearSelection}>
                     נקה הכל
-                </MDBBtn>
-                    <MDBBtn color='secondary' onClick={deleteSelectedCards}>
+                </button>
+                    <button color='secondary' onClick={deleteSelectedCards}>
                         מחיקת מסומנים
-                    </MDBBtn>
+                    </button>
                 </>}
         </div>
     )
