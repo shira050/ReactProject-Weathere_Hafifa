@@ -38,7 +38,6 @@ export const doApiGetCityByName = async (cityName) => {
   let url = API_URL + '/cities/' + cityName;
   try {
     let resp = await doApiGet(url);
-    console.log(resp);
     return resp;
   } catch (err) {
     return err.response;
@@ -65,12 +64,10 @@ export const chooseColor = async (feels_likeArr, tempArr) => {
   let cntHotestTime = 0, degreeColor = '';
   let timeDayArr = ['day', 'eve', 'morn', 'night'];
   timeDayArr.map((i) => {
-    debugger
     if (feels_likeArr[i] > tempArr[i])
       cntHotestTime++;
   }
   )
-  debugger
   if (cntHotestTime == 1) {
     degreeColor = 'gray';
   } else if (cntHotestTime == 2) {

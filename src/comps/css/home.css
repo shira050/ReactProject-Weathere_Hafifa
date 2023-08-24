@@ -1,9 +1,8 @@
 .bg-img{
-    background-image: url('../../assets/cloudes.jpg') ;
-    min-height: 100vh;
+      background-image: url('../../assets/cloudes.jpg') ;
     background-position: center;
     background-size: cover;
-    
+    min-height: 100vh;
 }
 .center{
     text-align: center;

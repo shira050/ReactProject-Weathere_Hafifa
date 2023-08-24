@@ -15,7 +15,7 @@ function App() {
   
   return (
 
-     <div style={{direction:'rtl'}}>
+     <div style={{direction:'rtl' }}>
      <BrowserRouter>
      <Haeder/>
       <Routes>

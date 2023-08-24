@@ -28,7 +28,6 @@ function TrHistoryTable(props) {
         }}> הפוך לראשי</button>}
        
         |<button onClick={() => {
-            debugger
             x.city == currentCity.city&& updateCurrentCity(prevCity);
             historySearch.splice(i, 1);
             alert("נמחק בהצלחה!");
