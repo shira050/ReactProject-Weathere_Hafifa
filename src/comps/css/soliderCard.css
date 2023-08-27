@@ -39,3 +39,57 @@
 .selected-card {
     border: 2px solid blue;
 }
+/* .Oval {
+    width: 16px;
+    height: 17px;
+    margin: 0 0 3px 2px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
+  }
+  .Rectangle {
+    width: 120px;
+    height: 49px;
+    margin: 9px 163px 50px 8px;
+    padding: 7px 8px 7px 24px;
+    opacity: 0.7;
+    border-radius: 6.2px;
+    background-color: #ededf4;
+  }
+  .\- {
+    width: 42px;
+    height: 14px;
+    margin: 0 0px 10px 21px;
+    font-family: Heebo;
+    font-size: 9.9px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #20213c;
+  }
+  .\- .text-style-1 {
+    color: #20213a;
+  }
+  .BG {
+    width: 579px;
+    height: 700px;
+    padding: 27px 0 0;
+    border-radius: 15px;
+    box-shadow: 0 1px 11px 1px rgba(0, 0, 0, 0.12);
+    background-color: #fff;
+  }
+  .-\32  {
+    width: 63px;
+    height: 11px;
+    margin: 1px 0 0;
+    font-family: Heebo;
+    font-size: 7.4px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: right;
+    color: #75769a;
+  } */
