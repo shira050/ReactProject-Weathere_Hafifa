@@ -14,47 +14,45 @@ function CardWeathereDay(props) {
   let tempArr = props.day.temp;
 
 
-  timeDayArr.map((i) => {
-    if (feels_likeArr[i] > tempArr[i])
-      cntHotestTime++;
-  }
-  )
-  if (cntHotestTime == 1) {
-    degreeColor = 'silver';
-  } else if (cntHotestTime == 2) {
-    degreeColor = 'orange';
-  }
-  else if (cntHotestTime > 2) {
-    degreeColor = 'red';
-  }
-  return (
-    <div className={`m-1 col-2 rounded bg-light bg-opacity-75 `} style={{ color: degreeColor,border:`solid ${degreeColor} 2px ` }}>
-      <p className='display-7 font-weight-bold '>
+  let titleDay="";
 
-        {
-          (indexDay == 1) &&
-          <p> מחר:</p>
-        }
-        {
-          (indexDay == 2) &&
-          <p> מחרתיים:</p>
-        }
-        {
-          (indexDay > 2) &&
-          <p> בעוד {indexDay} ימים:</p>
+  if (indexDay == 1)
+    titleDay = "מחר:"
+  else if (indexDay == 2)
+    titleDay = " מחרתיים:"
 
-        }
-
-      </p>
+  else if (indexDay > 2)
+    titleDay = ` בעוד ${indexDay} ימים:`
 
 
-      <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} title={description} className='overflow-hiden w-75' />
-      <p className='font-weight-bold'>{tempDay}&deg;</p>
-      
-      <p>{description}</p> 
 
-    </div>
-  )
+timeDayArr.map((i) => {
+  if (feels_likeArr[i] > tempArr[i])
+    cntHotestTime++;
+}
+)
+if (cntHotestTime == 1) {
+  degreeColor = 'silver';
+} else if (cntHotestTime == 2) {
+  degreeColor = 'orange';
+}
+else if (cntHotestTime > 2) {
+  degreeColor = 'red';
+}
+return (
+  <div className={`m-1 col-2 rounded bg-light bg-opacity-75 `} style={{ color: degreeColor, border: `solid ${degreeColor} 2px ` }}>
+    <p className='display-7 font-weight-bold m-0'>
+{titleDay}
+    </p>
+
+
+    <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} title={description} className='overflow-hiden h-50' />
+    <p className='font-weight-bold m-0'>{tempDay}&deg;</p>
+
+    <p className='m-0'>{description}</p>
+
+  </div>
+)
 }
 
 export default CardWeathereDay

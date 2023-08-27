@@ -77,7 +77,7 @@ export default function Home() {
 
   return (
     <div className="container-fluid bg-img text-center ">
-      <div className="container py-5">
+      <div className="container py-1">
         {currentUser && <h2 className="display-5">שלום {currentUser.First_Name} {currentUser.Last_Name}</h2>}
         <Search></Search>
         {loading ? (
@@ -90,7 +90,7 @@ export default function Home() {
             {temp?(
               <>
             
-            <div className="bg-light bg-opacity h-75 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{minHeight:'450px',alignItems:'center'}}>
+            <div className="bg-light bg-opacity h-md-50 h-25 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{minHeight:'150px',alignItems:'center'}}>
              
               <div className="col-8">
                 <h2 className="">היום</h2>
@@ -103,7 +103,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div style={{position:'absolute', bottom: "-45%",width:"100%" }}>
+            <div className='buttomPosition' style={{position:'absolute',width:"100%" }}>
             
                 <div className="row justify-content-between" >
                   {temp.daily.map((x, i) => {

@@ -95,9 +95,9 @@ function Login() {
                                 error={errors.password}
                             />
 
-                            <MDBBtn outline className='mx-2 px-5' color='white' size='lg' onClick={login}>
+                            <button outline className='mx-2 px-5' color='white' size='lg' onClick={login}>
                                 Login
-                            </MDBBtn>
+                            </button>
 
                             {/* icons for social media */}
                             <div className='d-flex flex-row mt-3 mb-5'>

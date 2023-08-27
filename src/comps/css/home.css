@@ -11,3 +11,23 @@
     margin: 0 auto;
     
 }
+
+@media (max-width: 1800px) {
+    .buttomPosition{
+        position:absolute;
+         bottom: -25%;
+    }
+  }
+  
+  @media  (max-width: 1200px) {
+    .buttomPosition{
+        position:absolute;
+         bottom: -35%;
+    }
+  }
+  @media  (max-width: 900px) {
+    .buttomPosition{
+        position:absolute;
+         bottom: -50%;
+    }
+  }

@@ -1,10 +1,10 @@
 import Login from './comps/login';
 
-import './App.css';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom'; 
 import Main from './comps/main';
 import Haeder from './comps/weathere/haeder';
 import Mador from './comps/mador/mador';
+import './App.css';
 
 function App() {
   

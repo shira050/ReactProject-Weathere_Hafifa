@@ -4,6 +4,7 @@ form{
 }
 form > p{
 color: red;
+margin: 0px;
 }
 .solider-list {
     margin-top: 10px; 
@@ -20,4 +21,15 @@ input ,.gender-select{
   }
   .gender-select{
     width: 100%;
+    border: none;
   }
+  form > button{
+    width: 94px;
+    height: 27px;
+    padding: 0 0.3px 0 2.7px;
+    margin: 10px;
+    border-radius: 5px;
+    }
+    form>input{
+      padding: 10px 0px;
+    }
