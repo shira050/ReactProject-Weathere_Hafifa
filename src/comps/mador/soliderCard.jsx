@@ -31,10 +31,10 @@ export default function SoliderCard(props) {
        
 
       </div>
-      <div className='col'>
-      <p className='\-'>{currentSolider.Last_Name} {currentSolider.First_Name}</p>
-        <p className='G'>{currentSolider.Rank}, {currentSolider.Age} </p>
-        <p className='-\32'>{currentSolider.Rank}, {currentSolider.Role} </p>
+      <div className='text-small'>
+      <p className=''>{currentSolider.Last_Name} {currentSolider.First_Name}</p>
+        <p className=''>{currentSolider.Rank}, {currentSolider.Age} </p>
+        <p className=''>{currentSolider.Rank}, {currentSolider.Role} </p>
       </div>
 
     </div>

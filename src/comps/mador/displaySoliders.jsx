@@ -43,7 +43,7 @@ function DisplaySoliders(props) {
                     </div>
                 ))
             ) : (
-                <p>אין כרגע חיילים להצגה.</p>
+                <p className='container'>אין כרגע חיילים להצגה.</p>
             )}
         </div>
     )

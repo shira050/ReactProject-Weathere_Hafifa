@@ -12,22 +12,23 @@
     
 }
 
-@media (max-width: 1800px) {
-    .buttomPosition{
-        position:absolute;
-         bottom: -25%;
-    }
-  }
+
   
-  @media  (max-width: 1200px) {
+  @media  (min-width: 900px) {
     .buttomPosition{
         position:absolute;
-         bottom: -35%;
+         bottom: -45%;
     }
   }
-  @media  (max-width: 900px) {
+  @media  (min-width: 600px) {
     .buttomPosition{
         position:absolute;
-         bottom: -50%;
+         bottom: -55%;
+    }
+  }
+  @media  (min-width: 1200px) {
+    .buttomPosition{
+        position:absolute;
+         bottom: -30%;
     }
   }
