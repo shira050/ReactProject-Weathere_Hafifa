@@ -14,10 +14,20 @@ const Search = () => {
   const serchCountry = async () => {
     const selectedCity = JSON.parse(inputRef.current.value);
     updateCurrentCity(selectedCity);
-    if(historySearch.length>=5)
-   { historySearch.splice(0, 1) }
-    historySearch.push(selectedCity)
+  
+    const existingIndex = historySearch.findIndex(city => city.city === selectedCity.city);
+  
+    if (existingIndex !== -1) {
+      historySearch.splice(existingIndex, 1); // Remove the existing entry
+    }
+  
+    if (historySearch.length >= 5) {
+      historySearch.splice(0, 1);
+    }
+  
+    historySearch.push(selectedCity);
   };
+  
 
   return (
     <>
