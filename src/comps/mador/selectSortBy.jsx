@@ -26,7 +26,7 @@ function SelectSortBy(props) {
             <div className='mb-4'>
                 <label>סדר לפי:</label>
                 <select
-                    className=''
+                    className='select-Sort-by'
                     onChange={(e) => { sortSolidersBy(e.target.value) }}
                 >
                     <option value='City'> עיר</option>

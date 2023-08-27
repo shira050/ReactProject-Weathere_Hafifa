@@ -4,7 +4,8 @@ const iconBackgroundStyles = {
     borderRadius: '6px',
     background: 'linear-gradient(180deg, #B869E1 0%, #DA8DF6 100%)',
     width: '40px',
-    height: '40px',
+    
+    ght: '40px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'

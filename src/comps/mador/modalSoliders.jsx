@@ -42,35 +42,37 @@ export default function ModalSoliders() {
                 visible={isModalVisible}
                 onCancel={toggleModal}
                 footer={null}
-                width="95%"
+                width="90%"
+
             >
-                <br/>
-                <hr/>
-                <div className="modal-header">
+                <br/><hr/>
+                <div className="solider-modal-header container-modal">
                     <div className="text-right">
                         <ArrowIcon />
                     </div>
                     <div className="text-left">
-                        <h2>חיילי המדור</h2>
+                        <h4>חיילי המדור</h4>
                         <p>{currentTime}</p>
                     </div>
                 </div>
+                <div className='container-modal'>
+                    <AddSoliderForm changeIsUpdated={(status) => setIsUpdated(status)} />
 
-                <AddSoliderForm changeIsUpdated={(status) => setIsUpdated(status)} />
+                    <div className="text-left">
+                        <SelectSortBy soliders={soliders} setGroupedBy={setGroupedBy} />
+                      
+                        <DisplaySoliders groupedBy={groupedBy} />
+                    </div>
+                    </div>
+                    <div className="solider-modal-footer container-modal">
 
-                <div className="text-left">
-                    <SelectSortBy soliders={soliders} setGroupedBy={setGroupedBy} />
-                    <DisplaySoliders groupedBy={groupedBy} />
-                </div>
-                <div className="modal-footer">
-
-                    <SelectedCardsEvents
-                        isUpdated={isUpdated}
-                        setIsUpdated={setIsUpdated}
-                        basicModal={isModalVisible}
-                        setBasicModal={setIsModalVisible}
-                    />
-                </div>
+                        <SelectedCardsEvents
+                            isUpdated={isUpdated}
+                            setIsUpdated={setIsUpdated}
+                            basicModal={isModalVisible}
+                            setBasicModal={setIsModalVisible}
+                        />
+                    </div>
             </Modal>
         </>
     );

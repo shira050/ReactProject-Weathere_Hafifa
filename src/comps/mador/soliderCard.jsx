@@ -24,7 +24,7 @@ export default function SoliderCard(props) {
        />
        {currentSolider.Is_Officer && (
              <div className='officerIcon'>
-             <OfficerIcon/>
+             <OfficerIcon />
              </div>
         )}
 
@@ -32,9 +32,9 @@ export default function SoliderCard(props) {
 
       </div>
       <div className='text-small'>
-      <p className=''>{currentSolider.Last_Name} {currentSolider.First_Name}</p>
-        <p className=''>{currentSolider.Rank}, {currentSolider.Age} </p>
-        <p className=''>{currentSolider.Rank}, {currentSolider.Role} </p>
+      <p >{currentSolider.Last_Name} {currentSolider.First_Name}</p>
+        <p >{currentSolider.Rank}, {currentSolider.Age} </p>
+        <p >{currentSolider.Rank}, {currentSolider.Role} </p>
       </div>
 
     </div>

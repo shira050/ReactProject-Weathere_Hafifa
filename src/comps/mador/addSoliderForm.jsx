@@ -129,7 +129,7 @@ export default function AddSoliderForm(props) {
         </select>
       </div>
       
-        <button type='submit' className='bg-light text-dark align-self-end' 
+        <button type='submit'  
         disabled={errorSolider.First_Name.length>0  || errorSolider.Mispar_Ishi.length>0 || errorSolider.User_Name.length>0||(!newSolider.First_Name || !newSolider.User_Name || !newSolider.Mispar_Ishi || !newSolider.Gender)}
         >
           הוספה
