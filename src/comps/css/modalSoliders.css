@@ -1,3 +1,15 @@
+.modal-body {
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.modal-close-button{
+    padding: 5px;
+    cursor: pointer;
+    font-size: large;
+}
+
 select {
     padding: 5px;
     border: 1px solid #ccc;
@@ -34,6 +46,7 @@ option:hover {
 .text-right {
     margin: 3px;
     text-align: end;
+    align-items: center;
 }
 
 .text-left {
@@ -45,11 +58,13 @@ option:hover {
 .scroll-container {
     overflow-y: auto;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
+    border: none;
     margin: 10px 5px;
+    max-height: 40vh;
+
 
 }
+
 
 .solider-list {
     display: flex;
@@ -60,7 +75,7 @@ button {
     min-width: 110px;
     height: 27px;
     padding: 0 0.3px 0 2.7px;
-    margin: 10px;
+    margin: 3px !important;
     border-radius: 5px !important;
     background: #ededf4cd;
     align-self: end;
@@ -69,11 +84,14 @@ button {
 
 .solider-modal-footer,
 .solider-modal-header {
-    display: flex;
     flex-shrink: 0;
     padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * .5);
     box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.12);
-    background-color: #fff;
+    display: flex;
+}
+.solider-modal-footer{
+    justify-content: flex-end;
+
 }
 
 
@@ -91,4 +109,9 @@ button {
     text-align: right;
     outline: none;
     border: none;
+}
+.solider-modal-header .text-right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

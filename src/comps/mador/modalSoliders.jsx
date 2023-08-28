@@ -42,10 +42,13 @@ export default function ModalSoliders() {
                 visible={isModalVisible}
                 onCancel={toggleModal}
                 footer={null}
-                width="90%"
+                closeIcon={null}
+                width="80%"
+                wrapClassName="modal-body"             >
 
-            >
-                <br/><hr/>
+                <div className="modal-close-button text-right" onClick={toggleModal}>
+                    X
+                </div>
                 <div className="solider-modal-header container-modal">
                     <div className="text-right">
                         <ArrowIcon />
@@ -60,19 +63,18 @@ export default function ModalSoliders() {
 
                     <div className="text-left">
                         <SelectSortBy soliders={soliders} setGroupedBy={setGroupedBy} />
-                      
+
                         <DisplaySoliders groupedBy={groupedBy} />
                     </div>
-                    </div>
-                    <div className="solider-modal-footer container-modal">
-
-                        <SelectedCardsEvents
-                            isUpdated={isUpdated}
-                            setIsUpdated={setIsUpdated}
-                            basicModal={isModalVisible}
-                            setBasicModal={setIsModalVisible}
-                        />
-                    </div>
+                </div>
+                <div className="solider-modal-footer container-modal">
+                    <SelectedCardsEvents
+                        isUpdated={isUpdated}
+                        setIsUpdated={setIsUpdated}
+                        basicModal={isModalVisible}
+                        setBasicModal={setIsModalVisible}
+                    />
+                </div>
             </Modal>
         </>
     );
