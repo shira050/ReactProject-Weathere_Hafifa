@@ -2,8 +2,11 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/header.css';
 import { USER } from '../../services/apiBasic';
+import { UserContext } from '../../context/userContext';
 
 export default function Header() {
+  const { currentUser, updateUser } = useContext(UserContext);
+
   let localUser;
   const nav = useNavigate();
   if (localStorage[USER]) {
@@ -12,6 +15,7 @@ export default function Header() {
   const onLogOut = () => {
     if (window.confirm('האם אתה בטוח שברצונך להתנתק?')) {
       localStorage.removeItem(USER);
+      updateUser(null)
       nav('/');
     }
   };
@@ -33,8 +37,8 @@ export default function Header() {
           {localUser && (
             <Link
               className="navLink"
-              to="/"
               onClick={() => onLogOut()}
+              to="/"
             >
               התנתקות
             </Link>

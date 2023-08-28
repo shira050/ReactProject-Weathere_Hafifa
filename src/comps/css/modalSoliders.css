@@ -72,10 +72,10 @@ option:hover {
 }
 
 button {
-    min-width: 110px;
+    min-width: 100px;
     height: 27px;
     padding: 0 0.3px 0 2.7px;
-    margin: 3px !important;
+    margin: 2px !important;
     border-radius: 5px !important;
     background: #ededf4cd;
     align-self: end;
@@ -91,7 +91,7 @@ button {
 }
 .solider-modal-footer{
     justify-content: flex-end;
-
+    flex-wrap: nowrap;
 }
 
 

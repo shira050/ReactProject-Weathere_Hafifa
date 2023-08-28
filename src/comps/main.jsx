@@ -9,6 +9,7 @@ function Main() {
     const { currentUser, updateUser } = useContext(UserContext);
     const getUser = async () => {
         let localUser;
+        debugger
         if(localStorage[USER]){
             localUser= JSON.parse(localStorage[USER]);
         } 

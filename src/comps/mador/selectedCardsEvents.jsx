@@ -1,14 +1,19 @@
 import React, { useContext } from 'react'
 import { UserContext } from '../../context/userContext';
 import { UpdateMadorSoliders } from '../../services/apiSoliders';
+import { USER } from '../../services/apiBasic';
 
 function SelectedCardsEvents(props) {
     const { soliders, updateSoliders } = useContext(UserContext);
-    const { selectedCards, setSelectedCards } = useContext(UserContext);
+    const {currentUser, selectedCards, setSelectedCards } = useContext(UserContext);
     let {isUpdated,setIsUpdated,basicModal, setBasicModal }=props;
+    let localUser;
+    if(localStorage[USER]){
+        localUser= JSON.parse(localStorage[USER]);
+    } 
 
 
-    const updateSolidersInServer = async () => {
+    const updateSolidersInServer = async () => {debugger
         if (isUpdated) {
 
             let res = await UpdateMadorSoliders(soliders);
@@ -29,16 +34,27 @@ function SelectedCardsEvents(props) {
         }
     }
 
+// const isContainLocalUser=()=>{
+//     return selectedCards.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
+// }
 
     const clearSelection = () => {
         setSelectedCards([]);
     };
     const handleSelectAll = () => {
-        const allIds = soliders.map((solider) => solider.Mispar_Ishi);
-        setSelectedCards(allIds);
+           setSelectedCards([...soliders]);
     };
     const deleteSelectedCards = async () => {
-        const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
+       
+        const isCurrentUserSelected = selectedCards.some((solider) => (solider.User_Name === localUser.name&&solider.Mispar_Ishi === localUser.password));
+    
+        if (isCurrentUserSelected) {
+            alert('יש לך להתנתק מהמערכת לפני שאתה מוחק את עצמך.');
+            return;
+        }
+    
+        // Filter out the current user and delete other selected cards
+        const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider));
         await updateSoliders(updatedSoliders);
         setSelectedCards([]);
         setIsUpdated(true);

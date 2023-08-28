@@ -40,11 +40,13 @@ export default function ModalSoliders() {
 
             <Modal
                 visible={isModalVisible}
-                onCancel={toggleModal}
+                // onCancel={toggleModal}
                 footer={null}
                 closeIcon={null}
                 width="80%"
-                wrapClassName="modal-body"             >
+                wrapClassName="modal-body"
+                height='90%'          
+            >
 
                 <div className="modal-close-button text-right" onClick={toggleModal}>
                     X

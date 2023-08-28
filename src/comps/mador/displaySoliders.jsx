@@ -6,11 +6,11 @@ function DisplaySoliders(props) {
     const { soliders, selectedCards, setSelectedCards } = useContext(UserContext);
     let groupedBy = props.groupedBy;
 
-    const toggleSelect = (id) => {
-        if (selectedCards.includes(id)) {
-            setSelectedCards(selectedCards.filter((selectedId) => selectedId !== id));
+    const toggleSelect = (solider) => {
+        if (selectedCards.includes(solider)) {
+            setSelectedCards(selectedCards.filter((selected) => selected !== solider));
         } else {
-            setSelectedCards([...selectedCards, id]);
+            setSelectedCards([...selectedCards, solider]);
         }
     };
 
@@ -35,7 +35,7 @@ function DisplaySoliders(props) {
                                 <SoliderCard
                                     key={solider.Mispar_Ishi}
                                     solider={solider}
-                                    isSelected={selectedCards.includes(solider.Mispar_Ishi)}
+                                    isSelected={selectedCards.includes(solider)}
                                     toggleSelect={(id) => toggleSelect(id)}
                                 />
                             ))}

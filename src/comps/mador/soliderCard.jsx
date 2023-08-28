@@ -7,7 +7,7 @@ export default function SoliderCard(props) {
   const { solider, isSelected, toggleSelect } = props;
 
   const handleSelect = () => {
-    toggleSelect(solider.Mispar_Ishi);
+    toggleSelect(solider);
   };
 
   return (
