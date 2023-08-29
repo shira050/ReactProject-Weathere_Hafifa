@@ -13,7 +13,7 @@ function SelectedCardsEvents(props) {
     } 
 
 
-    const updateSolidersInServer = async () => {debugger
+    const updateSolidersInServer = async () => {
         if (isUpdated) {
 
             let res = await UpdateMadorSoliders(soliders);

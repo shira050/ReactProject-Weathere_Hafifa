@@ -10,7 +10,6 @@ function Main() {
     let localUser;
 
     const getUser = async () => {
-        debugger
         if (localStorage[USER]) {
             localUser = JSON.parse(localStorage[USER]);
         }
