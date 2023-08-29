@@ -7,12 +7,13 @@ import Home from './weathere/Home';
 
 function Main() {
     const { currentUser, updateUser } = useContext(UserContext);
+    let localUser;
+
     const getUser = async () => {
-        let localUser;
         debugger
-        if(localStorage[USER]){
-            localUser= JSON.parse(localStorage[USER]);
-        } 
+        if (localStorage[USER]) {
+            localUser = JSON.parse(localStorage[USER]);
+        }
         let res = await doApiLogin(localUser);
         return res;
     }
@@ -21,7 +22,7 @@ function Main() {
         const fetchData = async () => {
             if (localStorage[USER]) {
                 let res = await getUser();
-               res&& updateUser(res.data);
+               await res && updateUser(res.data);
             }
         };
 
@@ -29,10 +30,10 @@ function Main() {
     }, []);
 
 
-   
+
     return (
         <>
-            {currentUser ? (
+            {localStorage[USER] ? (
                 <Home></Home>
             ) : (
                 <Login></Login>

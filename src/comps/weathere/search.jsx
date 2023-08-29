@@ -23,9 +23,11 @@ const Search = () => {
           <select ref={inputRef} class="browser-default custom-select  rounded-pill col-10">
             {cities.map((city, i) => (
               <option key={i} value={JSON.stringify(city)}>
-                {city.city}
-              </option>
+              {city.city}
+            </option>
             ))}
+
+            
           </select>
           <button onClick={serchCountry} className="bg-primary bg-gradient rounded col-1" id="basic-text1">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

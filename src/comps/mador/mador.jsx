@@ -6,7 +6,7 @@ import { UserContext } from '../../context/userContext';
 
 
 function Mador() {
-  const {soliders, updateSoliders} = useContext(UserContext);
+  const { soliders, updateSoliders } = useContext(UserContext);
   const getSoliders = async () => {
     try {
       let res = await doApiGet('http://localhost:3001/getAllSoldiers');
@@ -28,7 +28,9 @@ function Mador() {
   return (
     <div className="container-fluid  text-center ">
       <div className="container py-5">
-        <ModalSoliders />
+        {soliders.length > 0 ? <ModalSoliders />
+          : <p>שגיאה בשליפת חיילים</p>
+        }
       </div></div>
 
   )
