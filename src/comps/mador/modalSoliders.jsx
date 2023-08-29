@@ -7,6 +7,8 @@ import SelectedCardsEvents from './selectedCardsEvents';
 import SelectSortBy from './selectSortBy';
 import DisplaySoliders from './displaySoliders';
 import '../../comps/css/modalSoliders.css';
+import { ReactComponent as CloseIcon } from '../icons/close.svg'
+
 
 export default function ModalSoliders() {
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -49,7 +51,7 @@ export default function ModalSoliders() {
             >
 
                 <div className="modal-close-button text-right" onClick={toggleModal}>
-                    X
+                    <CloseIcon/>
                 </div>
                 <div className="solider-modal-header container-modal">
                     <div className="text-right">

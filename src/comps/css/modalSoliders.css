@@ -46,7 +46,6 @@ option:hover {
 .text-right {
     margin: 3px;
     text-align: end;
-    align-items: center;
 }
 
 .text-left {
@@ -110,8 +109,9 @@ button {
     outline: none;
     border: none;
 }
-.solider-modal-header .text-right{
+.solider-modal-header{
     display: flex;
     align-items: center;
-    justify-content: center;
+    text-align: center;
+
 }

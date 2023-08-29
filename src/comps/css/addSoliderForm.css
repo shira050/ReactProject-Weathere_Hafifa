@@ -13,14 +13,12 @@ margin: 0px;
 }
 input ,.gender-select{
     outline: 0;
-    border-width: 0 0 2px;
-    width: 100%;
+    border-width: 0 0 1px;
   }
   input:focus, .gender-select:focus {
     border-color: blue;
   }
   .gender-select{
-    width: 100%;
     border: none;
   }
   
