@@ -1,3 +1,8 @@
+.imgHolder {
+    height: 100%;
+    padding-top: 5px;
+}
+
 .imgProfile {
     border-radius: 50%;
     box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2);
@@ -16,7 +21,7 @@
 }
 
 .officerIcon {
-    position: absolute;
+    /* position: absolute;
     border-radius: 50%;
     bottom: 20%;
     left: -3px;
@@ -24,8 +29,14 @@
     text-align: center;
     display: flex;
     object-fit: contain;
-    padding: 2px;
+    padding: 2px; */
 
+    position: absolute;
+    border-radius: 50%;
+    bottom: 21%;
+    left: 0px;
+    background-color: #fff;
+    padding: 2px;
 }
 
 .profileCard {
@@ -58,35 +69,33 @@
     word-break: break-all;
 }
 
-@media (max-width: 900px) {
-     .profileCard {
-        
-    }
-
-    .text-small {
+@media (min-width: 1200px) {
+    .officerIcon {
+        bottom: 40%;
+        left: -3px;
     }
 }
 
 
 @media (min-width: 901px) and (max-width: 1200px) {
     .profileCard {
-        width: 150px; 
-        height: 60px; 
+        width: 150px;
+        height: 60px;
     }
 
     .text-small {
-        font-size: 9px; 
+        font-size: 9px;
     }
 }
 
 
 @media (min-width: 1201px) {
     .profileCard {
-        width: 180px; 
-        height: 75px; 
+        width: 180px;
+        height: 75px;
     }
 
     .text-small {
-        font-size: 12px; 
+        font-size: 12px;
     }
 }

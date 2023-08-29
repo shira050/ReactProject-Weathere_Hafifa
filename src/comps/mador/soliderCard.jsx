@@ -13,16 +13,25 @@ export default function SoliderCard(props) {
     toggleSelect(solider);
   };
 
+
   return (
     <div className={`profileCard ${isSelected ? 'selected-card ' : ''}`} onClick={handleSelect}>
       <div className='avatar'>
-          {currentSolider.Gender === 'ז' ? <ProfilPicMan className='imgProfile'/> : <ProfilPicWoman className='imgProfile'/>}
+
+        <div className='imgHolder'>
+          {currentSolider.Gender === 'ז' ?
+            <ProfilPicMan className='imgProfile' /> :
+            <ProfilPicWoman className='imgProfile' />
+          }
+
+          {currentSolider.Is_Officer && (
+            <OfficerIcon className='officerIcon' />
+          )}
+        </div>
 
         {currentSolider.Is_Officer && (
-            <OfficerIcon className='officerIcon'/>
+          <OfficerIcon className='officerIcon' />
         )}
-
-
 
       </div>
       <div className='text-small'>
