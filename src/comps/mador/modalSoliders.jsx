@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Modal } from 'antd';
 import AddSoliderForm from './addSoliderForm';
 import { UserContext } from '../../context/userContext';
-import ArrowIcon from '../icons/arowIcon';
 import SelectedCardsEvents from './selectedCardsEvents';
 import SelectSortBy from './selectSortBy';
 import DisplaySoliders from './displaySoliders';
 import '../../comps/css/modalSoliders.css';
 import { ReactComponent as CloseIcon } from '../icons/close.svg'
+import { ReactComponent as ArrowsIcon } from '../icons/arow.svg'
 
 
 export default function ModalSoliders() {
@@ -55,11 +55,11 @@ export default function ModalSoliders() {
                 </div>
                 <div className="solider-modal-header container-modal">
                     <div className="text-right">
-                        <ArrowIcon />
+                        <ArrowsIcon className='iconBackground' />
                     </div>
                     <div className="text-left">
-                        <h4>חיילי המדור</h4>
-                        <p>{currentTime}</p>
+                        <span className='title-modal'>חיילי המדור</span>
+                        <span>{currentTime}</span>
                     </div>
                 </div>
                 <div className='container-modal'>

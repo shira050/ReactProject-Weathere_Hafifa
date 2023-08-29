@@ -88,11 +88,36 @@ button {
     box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.12);
     display: flex;
 }
+.solider-modal-header{
+    display: flex;
+    align-items: center ;
+    font-size: 14px;
+    padding: 19px 10px;
+}
+.solider-modal-header .title-modal{
+    font-weight: bold;
+    font-size: 18px;
+    display: block;
+
+
+}
+
 .solider-modal-footer{
     justify-content: flex-end;
     flex-wrap: nowrap;
 }
-
+.iconBackground {
+    border-radius: 6px;
+    background: linear-gradient(180deg, #B869E1 0%, #DA8DF6 100%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-left: 10px;
+  }
+  
 
 .ant-modal-content {
     border-radius: 50px;
@@ -108,10 +133,4 @@ button {
     text-align: right;
     outline: none;
     border: none;
-}
-.solider-modal-header{
-    display: flex;
-    align-items: center;
-    text-align: center;
-
 }
