@@ -34,10 +34,6 @@ function SelectedCardsEvents(props) {
         }
     }
 
-// const isContainLocalUser=()=>{
-//     return selectedCards.filter((solider) => !selectedCards.includes(solider.Mispar_Ishi));
-// }
-
     const clearSelection = () => {
         setSelectedCards([]);
     };
@@ -53,11 +49,11 @@ function SelectedCardsEvents(props) {
             return;
         }
     
-        // Filter out the current user and delete other selected cards
         const updatedSoliders = soliders.filter((solider) => !selectedCards.includes(solider));
         await updateSoliders(updatedSoliders);
         setSelectedCards([]);
         setIsUpdated(true);
+        alert("מחיקה בוצעה בהצלחה!")
     };
     return (
         <div>

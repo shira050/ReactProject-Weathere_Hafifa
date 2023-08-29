@@ -21,16 +21,12 @@
 }
 
 .officerIcon {
-    /* position: absolute;
-    border-radius: 50%;
-    bottom: 20%;
-    left: -3px;
-    background-color: #fff;
+    /*
+   
     text-align: center;
     display: flex;
     object-fit: contain;
-    padding: 2px; */
-
+*/
     position: absolute;
     border-radius: 50%;
     bottom: 21%;
@@ -69,12 +65,7 @@
     word-break: break-all;
 }
 
-@media (min-width: 1200px) {
-    .officerIcon {
-        bottom: 40%;
-        left: -3px;
-    }
-}
+
 
 
 @media (min-width: 901px) and (max-width: 1200px) {
@@ -97,5 +88,17 @@
 
     .text-small {
         font-size: 12px;
+    }
+
+    .officerIcon {
+        bottom: 35%;
+        left: 1px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .officerIcon {
+        bottom: 40%;
+        left: -3px;
     }
 }
