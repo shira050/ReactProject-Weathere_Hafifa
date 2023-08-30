@@ -1,10 +1,61 @@
 body {
-    /* fallback for old browsers */
-    background: #6a11cb;
-  
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-  
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
-  }
+  /* fallback for old browsers */
+  background: #6a11cb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  border-radius: 1rem;
+  min-width: 400px;
+  width: 30%;
+  background-color: #1e1e1e;
+}
+
+.login-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.login-header {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: white;
+  /* Text color */
+}
+
+.login-subheader {
+  color: rgba(255, 255, 255, 0.45);
+  /* Light text color */
+  margin-bottom: 2rem;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.sign-up-link {
+  color: rgba(255, 255, 255, 0.45);
+  margin-top: 2rem;
+}
