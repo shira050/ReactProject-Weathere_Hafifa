@@ -42,7 +42,7 @@ export default function ModalSoliders() {
 
             <Modal
                 visible={isModalVisible}
-                // onCancel={toggleModal}
+                onCancel={toggleModal}
                 footer={null}
                 closeIcon={null}
                 width="80%"

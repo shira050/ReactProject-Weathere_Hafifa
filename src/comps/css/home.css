@@ -1,5 +1,5 @@
 .bg-img{
-    background-image: url('../../assets/cloudes.jpg') ;
+    background-image: url('../../assets/cloudes.jpg') !important;
     min-height: 100vh;
     background-position: center;
     background-size: cover;
