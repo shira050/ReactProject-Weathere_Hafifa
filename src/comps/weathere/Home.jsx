@@ -76,7 +76,7 @@ export default function Home() {
 
 
   return (
-    <div className="container-fluid bg-img text-center ">
+    <div className="container-fluid  text-center bg-img">
       <div className="container py-1">
         {currentUser && <h2 className="display-5">שלום {currentUser.First_Name} {currentUser.Last_Name}</h2>}
         <Search></Search>
