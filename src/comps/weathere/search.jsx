@@ -20,7 +20,7 @@ const Search = () => {
       <MDBCol md="9" className="m-auto my-3 ">
         <div className="row justify-content-around">
            
-          <select ref={inputRef} class="browser-default custom-select  rounded-pill col-10">
+          <select ref={inputRef} class="browser-default custom-select  rounded-pill col-9">
             {cities.map((city, i) => (
               <option key={i} value={JSON.stringify(city)}>
               {city.city}
