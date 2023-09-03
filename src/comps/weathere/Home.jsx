@@ -86,35 +86,34 @@ export default function Home() {
             <p className='display-7'>Loading...</p>
           </div>
         ) : (
-          <div style={{position:'relative'}}>
-            {temp?(
+          <div style={{ position: 'relative' }}>
+            {temp ? (
               <>
-            
-            <div className="bg-light bg-opacity h-md-50 h-25 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{minHeight:'150px',alignItems:'center'}}>
-             
-              <div className="col-8">
-                <h2 className="">היום</h2>
-                <p className="display-4">{currentCity.city}</p>
+
+                <div className="bg-light bg-opacity h-md-50 h-25 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{ minHeight: '150px', alignItems: 'center' }}>
+                  <div className="col-8">
+                    <h2 className="">היום</h2>
+                    <p className="display-4">{currentCity.city}</p>
                     <p>{tempDay}&deg;</p>
                     <p>{description}</p>
-                              </div>
-              <div className="col-4">
-                <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} alt={description} className="h-100 w-100" />
-              </div>
-            </div>
-
-            <div className='buttomPosition' style={{position:'absolute',width:"100%" }}>
-            
-                <div className="row justify-content-between" >
-                  {temp.daily.map((x, i) => {
-                    if (i > 0&&i<6) return <CardWeathereDay day={x} i={i} />;
-                  })}
+                  </div>
+                  <div className="col-4">
+                    <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} alt={description} className="h-100 w-100" />
+                  </div>
                 </div>
-            </div>
-            </>
-            
-            ):<>
-            <p>error {temp&&temp.res&& temp.data}</p>
+
+                <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
+
+                  <div className="row justify-content-between" >
+                    {temp.daily.map((x, i) => {
+                      if (i > 0 && i < 6) return <CardWeathereDay day={x} i={i} />;
+                    })}
+                  </div>
+                </div>
+              </>
+
+            ) : <>
+              <p>error {temp && temp.res && temp.data}</p>
             </>}
           </div>
         )}
