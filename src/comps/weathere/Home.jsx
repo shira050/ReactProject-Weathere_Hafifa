@@ -9,23 +9,14 @@ import { doApiGetCities, doApiGetCityByName, getCityDetails, getWethereBylatlan 
 import { useNavigate } from 'react-router-dom';
 import '../../assets/loading_gif.gif'
 import CardWeathereDay from './cardWeathereDay';
+import WeatherToday from './today';
 
 
 export default function Home() {
-  const { currentUser, updateUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
   const [loading, setLoading] = useState(true);
-  let tempDay, img, description, tempArr, feels_likeArr, currentDay;
-  if (temp) {
-    currentDay = temp.daily[0];
-    tempDay = (((currentDay.temp.max + currentDay.temp.eve) / 2) - 272.15).toFixed(2);
-    img = currentDay.weather[0].icon;
-    description = currentDay.weather[0].description;
-    feels_likeArr = currentDay.feels_like;
-    tempArr = currentDay.temp;
-
-  }
-
+ 
   const getCities = async () => {
     try {
       let res = await doApiGetCities();
@@ -90,17 +81,7 @@ export default function Home() {
             {temp ? (
               <>
 
-                <div className="bg-light bg-opacity h-md-50 h-25 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{ minHeight: '150px', alignItems: 'center' }}>
-                  <div className="col-8">
-                    <h2 className="">היום</h2>
-                    <p className="display-4">{currentCity.city}</p>
-                    <p>{tempDay}&deg;</p>
-                    <p>{description}</p>
-                  </div>
-                  <div className="col-4">
-                    <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} alt={description} className="h-100 w-100" />
-                  </div>
-                </div>
+               <WeatherToday/>
 
                 <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
 
