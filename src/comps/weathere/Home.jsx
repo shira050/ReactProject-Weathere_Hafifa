@@ -80,11 +80,8 @@ export default function Home() {
           <div style={{ position: 'relative' }}>
             {temp ? (
               <>
-
                <WeatherToday/>
-
                 <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
-
                   <div className="row justify-content-between" >
                     {temp.daily.map((x, i) => {
                       if (i > 0 && i < 6) return <CardWeathereDay day={x} i={i} />;
