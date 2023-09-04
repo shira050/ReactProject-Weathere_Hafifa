@@ -2,20 +2,25 @@ import React from 'react'
 import '../../assets/whethereImges/sun.jpg'
 import { useTranslation } from 'react-i18next';
 
+//let?
 function CardWeathereDay(props) {
-  const { t } = useTranslation('he');
-  let tempDay = (((props.day.temp.max + props.day.temp.eve) / 2) - 272.15).toFixed(2);
-  let img = props.day.weather[0].icon;
+  const { t } = useTranslation('he');//?
+  //const { day, i } = props; destructering
+  let tempDay = (((props.day.temp.max + props.day.temp.eve) / 2) - 272.15).toFixed(2); //convert function
+  let img = props.day.weather[0].icon;//סעיף ד
   let description = t(props.day.weather[0].description.toString());
   let indexDay = props.i;
   let degreeColor = '', cntHotestTime = 0;
   let timeDayArr = ['day', 'eve', 'morn', 'night'];
-  let feels_likeArr = props.day.feels_like;
-  let tempArr = props.day.temp;
+  let feels_likeArr = props.day.feels_like;//not an array
+  let tempArr = props.day.temp;//not an array
 
-
+  
+  //function getDayName
   let titleDay="";
 
+  //switch case
+  // == vs ===
   if (indexDay == 1)
     titleDay = "מחר:"
   else if (indexDay == 2)
@@ -25,12 +30,14 @@ function CardWeathereDay(props) {
     titleDay = ` בעוד ${indexDay} ימים:`
 
 
-
+//function countHotestTime
 timeDayArr.map((i) => {
   if (feels_likeArr[i] > tempArr[i])
     cntHotestTime++;
 }
 )
+
+//function getColor
 if (cntHotestTime == 1) {
   degreeColor = 'silver';
 } else if (cntHotestTime == 2) {

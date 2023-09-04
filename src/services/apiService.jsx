@@ -32,7 +32,7 @@ export const doApiGetCities = async () => {
   }
 };
 
-
+//remove doapi 
 export const getCityDetails = async (currentCityName) => {
   let cityRes = await doApiGetCityByName(currentCityName);
   let res;
@@ -51,6 +51,7 @@ export const doApiGetCityByName = async (cityName) => {
 export const getWethereBylatlan = async (lat, lan) => {
   if (lat && lan) {
     // ${process.env.API_KEY}
+    //env
     let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lan}&appid=6f11fa9760902e1597265ad205f05d2c`;
     try {
       // let resp = await axios.get(url);

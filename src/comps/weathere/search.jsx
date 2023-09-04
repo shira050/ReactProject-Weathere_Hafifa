@@ -9,6 +9,7 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState("");
   const inputRef = useRef();
 
+  //async?
   const serchCountry = async () => {
     const selectedCity = JSON.parse(inputRef.current.value);
     updateCurrentCity(selectedCity);

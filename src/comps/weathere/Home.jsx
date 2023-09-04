@@ -11,6 +11,9 @@ import '../../assets/loading_gif.gif'
 import CardWeathereDay from './cardWeathereDay';
 
 
+//default city jerusalem in input
+//final branch
+//error bug
 export default function Home() {
   const { currentUser, updateUser } = useContext(UserContext);
   const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
@@ -64,6 +67,7 @@ export default function Home() {
   }, [cities]);
 
   useEffect(() => {
+    //names
     const fetchData = async () => {
       if (currentCity) {
         let res = await getCityDetails(currentCity.city);
@@ -89,7 +93,7 @@ export default function Home() {
           <div style={{ position: 'relative' }}>
             {temp ? (
               <>
-
+              {/* להוציא לקומפ */}
                 <div className="bg-light bg-opacity h-md-50 h-25 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{ minHeight: '150px', alignItems: 'center' }}>
                   <div className="col-8">
                     <h2 className="">היום</h2>
@@ -105,6 +109,9 @@ export default function Home() {
                 <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
 
                   <div className="row justify-content-between" >
+                    {/* שמות */}
+                    {/* use slice instead of if */}
+                    {/* array functions */}
                     {temp.daily.map((x, i) => {
                       if (i > 0 && i < 6) return <CardWeathereDay day={x} i={i} />;
                     })}
