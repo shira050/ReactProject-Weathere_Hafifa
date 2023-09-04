@@ -11,7 +11,14 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState("");
   const inputRef = useRef();
 
-  const serchCountry = async () => {
+  useEffect(() => {
+    // הגדרת העיר הנוכחית כאשר הקומפוננטה נטענת
+    if (currentCity) {
+      inputRef.current.value = JSON.stringify(currentCity);
+    }
+  }, [currentCity]);
+
+  const searchCountry = async () => {
     const selectedCity = JSON.parse(inputRef.current.value);
     updateCurrentCity(selectedCity);
   };

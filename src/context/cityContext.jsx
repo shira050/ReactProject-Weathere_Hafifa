@@ -11,6 +11,8 @@ const CityProvider = ({ children }) => {
   const addCity = (newCity) => {
     setCities([...cities, newCity]);
   };
+
+  // unnecessary functions
   const updateCities = (_cities) => {
     setCities(_cities);
   };

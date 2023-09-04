@@ -2,7 +2,7 @@ import axios from "axios";
 import { _ } from "lodash";
 import { UserContext } from "../context/userContext";
 import { useContext } from "react";
-export const API_URL = "http://localhost:3001";
+export const API_URL = "http://localhost:3001";//env
 export const USER = "user";
 
 export const doApiGet = async (_url) => {

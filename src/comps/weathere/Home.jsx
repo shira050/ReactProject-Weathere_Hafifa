@@ -12,6 +12,9 @@ import CardWeathereDay from './cardWeathereDay';
 import WeatherToday from './today';
 
 
+//default city jerusalem in input
+//final branch
+//error bug
 export default function Home() {
   const { currentUser } = useContext(UserContext);
   const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
@@ -55,6 +58,7 @@ export default function Home() {
   }, [cities]);
 
   useEffect(() => {
+    //names
     const fetchCurrentCityData = async () => {
       if (currentCity) {
         let res = await getCityDetails(currentCity.city);
@@ -80,13 +84,12 @@ export default function Home() {
           <div style={{ position: 'relative' }}>
             {temp ? (
               <>
-                <WeatherToday />
+               <WeatherToday/>
                 <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
                   <div className="row justify-content-between" >
-                    {temp.daily.slice(1, 6).map((day, index) => (
-                      <CardWeathereDay day={day} i={index}/>
-                    ))}
-
+                    {temp.daily.map((x, i) => {
+                      if (i > 0 && i < 6) return <CardWeathereDay day={x} i={i} />;
+                    })}
                   </div>
                 </div>
               </>
