@@ -5,7 +5,7 @@ import '../../assets/whethereImges/cloudAndSun.jpg';
 import { USER } from '../../services/apiBasic';
 import { UserContext } from '../../context/userContext';
 import { CityContext } from '../../context/cityContext';
-import { doApiGetCities, doApiGetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
+import {  GetCities,  GetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/loading_gif.gif'
 import CardWeathereDay from './cardWeathereDay';
@@ -17,22 +17,24 @@ import WeatherToday from './today';
 //error bug
 export default function Home() {
   const { currentUser } = useContext(UserContext);
-  const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
+  const { currentCity, setCurrentCity, cities, setCities, temp, setTemp } = useContext(CityContext);
   const [loading, setLoading] = useState(true);
 
   const getCities = async () => {
     try {
-      let res = await doApiGetCities();
+      let res = await  GetCities();
       //  && res.status === 200
       if (res) {
-        updateCities(res);
+        await setCities(res);
+
       } else {
         alert('שגיאה בטעינת ערים אנא נסה מאוחר יותר!');
       }
     } catch (error) {
       console.error(error);
+
     } finally {
-      setLoading(false);
+      await setLoading(false);
     }
   };
 
@@ -49,7 +51,7 @@ export default function Home() {
     const fetchCitiesData = async () => {
       for (let index = 0; index < cities.length; index++) {
         if (cities[index].city.toLowerCase() === 'jerusalem') {
-          await updateCurrentCity(cities[index]);
+          await setCurrentCity(cities[index]);
           break;
         }
       }
@@ -58,7 +60,6 @@ export default function Home() {
   }, [cities]);
 
   useEffect(() => {
-    //names
     const fetchCurrentCityData = async () => {
       if (currentCity) {
         let res = await getCityDetails(currentCity.city);
@@ -75,30 +76,34 @@ export default function Home() {
       <div className="container py-1">
         {currentUser && <h2 className="display-5">שלום {currentUser.First_Name} {currentUser.Last_Name}</h2>}
         <Search></Search>
-        {loading ? (
-          <div >
-            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
-            <p className='display-7'>Loading...</p>
-          </div>
-        ) : (
-          <div style={{ position: 'relative' }}>
-            {temp ? (
-              <>
-               <WeatherToday/>
-                <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
-                  <div className="row justify-content-between" >
-                    {temp.daily.map((x, i) => {
-                      if (i > 0 && i < 6) return <CardWeathereDay day={x} i={i} />;
-                    })}
-                  </div>
-                </div>
-              </>
 
-            ) : <>
-              <p>error {temp && temp.res && temp.data}</p>
-            </>}
-          </div>
-        )}
+        <div style={{ position: 'relative' }}>
+          {temp ? (
+            <>
+              <WeatherToday />
+              <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
+                <div className="row justify-content-between" >
+                  {temp.daily.slice(1, 6).map((x, i) => (
+                    <CardWeathereDay day={x} key={i} i={i} />
+                  ))}
+
+                </div>
+              </div>
+            </>
+
+          ) :
+            <>
+              {loading ? (
+                <div >
+                  <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
+                  <p className='display-7'>Loading...</p>
+                </div>
+              ) : (!temp) && (
+                <p>seems like we have problem... please try again :( </p>
+              )}
+            </>
+          }
+        </div>
 
       </div>
     </div>

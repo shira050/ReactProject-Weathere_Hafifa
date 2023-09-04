@@ -1,19 +1,19 @@
 import React, { useContext, useEffect } from 'react'
 import Login from './login'
 import { USER } from '../services/apiBasic';
-import { doApiLogin } from '../services/apiService';
+import {  loginToSystem } from '../services/apiService';
 import { UserContext } from '../context/userContext';
 import Home from './weathere/Home';
 
 function Main() {
-    const { currentUser, updateUser } = useContext(UserContext);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
     let localUser;
 
     const getUser = async () => {
         if (localStorage[USER]) {
             localUser = JSON.parse(localStorage[USER]);
         }
-        let res = await doApiLogin(localUser);
+        let res = await  loginToSystem(localUser);
         return res;
     }
 
@@ -21,7 +21,7 @@ function Main() {
         const fetchData = async () => {
             if (localStorage[USER]) {
                 let res = await getUser();
-               await res && updateUser(res.data);
+               await res && setCurrentUser(res.data);
             }
         };
 

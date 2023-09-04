@@ -1,4 +1,4 @@
-import { API_URL, doApiMethod, doApiGet, USER } from "./apiBasic";
+import { API_URL,  Method,  getRquest, USER } from "./apiBasic";
   let currentUser;
   if(localStorage[USER]){
     currentUser= JSON.parse(localStorage[USER]);
@@ -9,7 +9,7 @@ import { API_URL, doApiMethod, doApiGet, USER } from "./apiBasic";
 export const UpdateMadorSoliders = async (soliders) => {
     let url = API_URL + "/updateMadorSoldiers";
     try {
-        let resp = await doApiMethod(url, "PUT",
+        let resp = await  Method(url, "PUT",
             { newSoldiers: soliders },
             {
                 user_name: currentUser.name,

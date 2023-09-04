@@ -1,11 +1,9 @@
 import axios from "axios";
 import { _ } from "lodash";
-import { UserContext } from "../context/userContext";
-import { useContext } from "react";
-export const API_URL = "http://localhost:3001";//env
+export const API_URL = `http://localhost:${process.env.REACT_APP_API_PORT}`;
 export const USER = "user";
 
-export const doApiGet = async (_url) => {
+export const  getRquest = async (_url) => {
   let currentUser;
 
   if(localStorage[USER]){
@@ -26,7 +24,7 @@ export const doApiGet = async (_url) => {
 };
 
 // For Post,delete, put, patch
-export const doApiMethod = async (_url, _method, _body = {}, _headers= {}) => {
+export const  Method = async (_url, _method, _body = {}, _headers= {}) => {
 
   try {
     let resp = await axios({

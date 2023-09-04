@@ -1,46 +1,36 @@
-import React, { useContext, useRef, useState } from "react";
-import { MDBCol, MDBIcon } from "mdbreact";
+import React, { useContext, useRef, useState, useEffect } from "react";
+import { MDBCol } from "mdbreact";
 import { CityContext } from "../../context/cityContext";
-import { doApiGetCityByName, getCityDetails } from "../../services/apiService";
-import { MDBBtn } from "mdb-react-ui-kit";
+import {  GetCityByName, getCityDetails } from "../../services/apiService";
 import { ReactComponent as SearchIcon } from '../icons//search.svg'
-
-
 const Search = () => {
-  const { cities, updateCurrentCity } = useContext(CityContext);
+  const { cities, setCurrentCity, currentCity } = useContext(CityContext); // הוספת currentCity
   const [searchValue, setSearchValue] = useState("");
   const inputRef = useRef();
 
-  useEffect(() => {
-    // הגדרת העיר הנוכחית כאשר הקומפוננטה נטענת
-    if (currentCity) {
-      inputRef.current.value = JSON.stringify(currentCity);
-    }
-  }, [currentCity]);
-
-  const searchCountry = async () => {
+  const searchCountry = () => {
     const selectedCity = JSON.parse(inputRef.current.value);
-    updateCurrentCity(selectedCity);
+    setCurrentCity(selectedCity);
   };
 
   return (
     <>
-
       <MDBCol md="9" className="m-auto my-3 ">
         <div className="row justify-content-around">
-           
-          <select ref={inputRef} class="browser-default custom-select  rounded-pill col-9">
+          <select ref={inputRef} className="browser-default custom-select  rounded-pill col-9">
+            {currentCity && ( // הצגת העיר הנוכחית כאופציה ראשונה אם היא קיימת
+              <option value={JSON.stringify(currentCity)}>{currentCity.city}</option>
+            )}
             {cities.map((city, i) => (
               <option key={i} value={JSON.stringify(city)}>
-              {city.city}
-            </option>
+                {city.city}
+              </option>
             ))}
-
-            
           </select>
-          <button onClick={serchCountry} className="bg-primary bg-gradient rounded col-1" id="basic-text1">
-             <SearchIcon/>
-            </button>
+          <button onClick={searchCountry} className="bg-primary bg-gradient rounded col-1" id="basic-text1">
+          <SearchIcon/>
+
+          </button>
         </div>
       </MDBCol>
     </>

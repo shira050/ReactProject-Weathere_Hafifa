@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import { doApiGet } from '../../services/apiBasic';
+import {  getRquest } from '../../services/apiBasic';
 import ModalSoliders from './modalSoliders';
 import { UserContext } from '../../context/userContext';
 
@@ -9,7 +9,7 @@ function Mador() {
   const { soliders, updateSoliders } = useContext(UserContext);
   const getSoliders = async () => {
     try {
-      let res = await doApiGet('http://localhost:3001/getAllSoldiers');//env
+      let res = await  getRquest(`http://localhost:${process.env.REACT_APP_API_PORT}/getAllSoldiers`);
       //  && res.status === 200
       if (res) {
         updateSoliders(res.data);
