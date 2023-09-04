@@ -9,26 +9,17 @@ import { doApiGetCities, doApiGetCityByName, getCityDetails, getWethereBylatlan 
 import { useNavigate } from 'react-router-dom';
 import '../../assets/loading_gif.gif'
 import CardWeathereDay from './cardWeathereDay';
+import WeatherToday from './today';
 
 
 //default city jerusalem in input
 //final branch
 //error bug
 export default function Home() {
-  const { currentUser, updateUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
   const [loading, setLoading] = useState(true);
-  let tempDay, img, description, tempArr, feels_likeArr, currentDay;
-  if (temp) {
-    currentDay = temp.daily[0];
-    tempDay = (((currentDay.temp.max + currentDay.temp.eve) / 2) - 272.15).toFixed(2);
-    img = currentDay.weather[0].icon;
-    description = currentDay.weather[0].description;
-    feels_likeArr = currentDay.feels_like;
-    tempArr = currentDay.temp;
-
-  }
-
+ 
   const getCities = async () => {
     try {
       let res = await doApiGetCities();
@@ -107,7 +98,6 @@ export default function Home() {
                 </div>
 
                 <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
-
                   <div className="row justify-content-between" >
                     {/* שמות */}
                     {/* use slice instead of if */}
