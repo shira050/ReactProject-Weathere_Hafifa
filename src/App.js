@@ -10,7 +10,7 @@ import Main from './comps/main';
 function App() {
   
   return (
-
+//Tehila
      <div style={{direction:'rtl'}}>
      <BrowserRouter>
       <Routes>
