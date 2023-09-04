@@ -16,12 +16,12 @@ function CardWeathereDay(props) {
 
   let titleDay="";
 
-  if (indexDay == 1)
+  if (indexDay == 0)
     titleDay = "מחר:"
-  else if (indexDay == 2)
+  else if (indexDay == 1)
     titleDay = " מחרתיים:"
 
-  else if (indexDay > 2)
+  else if (indexDay > 1)
     titleDay = ` בעוד ${indexDay} ימים:`
 
 

@@ -16,7 +16,7 @@ export default function Home() {
   const { currentUser } = useContext(UserContext);
   const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
   const [loading, setLoading] = useState(true);
- 
+
   const getCities = async () => {
     try {
       let res = await doApiGetCities();
@@ -43,7 +43,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCitiesData = async () => {
       for (let index = 0; index < cities.length; index++) {
         if (cities[index].city.toLowerCase() === 'jerusalem') {
           await updateCurrentCity(cities[index]);
@@ -51,17 +51,17 @@ export default function Home() {
         }
       }
     };
-    fetchData();
+    fetchCitiesData();
   }, [cities]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCurrentCityData = async () => {
       if (currentCity) {
         let res = await getCityDetails(currentCity.city);
         setTemp(res);
       }
     };
-    fetchData();
+    fetchCurrentCityData();
 
   }, [currentCity]);
 
@@ -80,12 +80,13 @@ export default function Home() {
           <div style={{ position: 'relative' }}>
             {temp ? (
               <>
-               <WeatherToday/>
+                <WeatherToday />
                 <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
                   <div className="row justify-content-between" >
-                    {temp.daily.map((x, i) => {
-                      if (i > 0 && i < 6) return <CardWeathereDay day={x} i={i} />;
-                    })}
+                    {temp.daily.slice(1, 6).map((day, index) => (
+                      <CardWeathereDay day={day} i={index}/>
+                    ))}
+
                   </div>
                 </div>
               </>
