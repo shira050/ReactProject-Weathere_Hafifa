@@ -44,8 +44,8 @@ export default function ModalSoliders() {
                 onCancel={toggleModal}
                 footer={null}
                 closeIcon={null}
-                width="80%"
-                bodyStyle={{ maxHeight: '90vh', overflowY: 'auto' }}
+                width="70%"
+                wrapClassName="modal-body"
             >
                 <div className="modal-close-button text-right" onClick={toggleModal}>
                     <CloseIcon />

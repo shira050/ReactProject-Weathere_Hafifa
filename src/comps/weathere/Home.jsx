@@ -5,40 +5,36 @@ import '../../assets/whethereImges/cloudAndSun.jpg';
 import { USER } from '../../services/apiBasic';
 import { UserContext } from '../../context/userContext';
 import { CityContext } from '../../context/cityContext';
-import { doApiGetCities, doApiGetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
+import {  GetCities,  GetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
 import '../../assets/loading_gif.gif'
 import CardWeathereDay from './cardWeathereDay';
+import WeatherToday from './today';
 
 
+//default city jerusalem in input
+//final branch
+//error bug
 export default function Home() {
-  const { currentUser, updateUser } = useContext(UserContext);
-  const { currentCity, updateCurrentCity, cities, updateCities, temp, setTemp } = useContext(CityContext);
+  const { currentUser } = useContext(UserContext);
+  const { currentCity, setCurrentCity, cities, setCities, temp, setTemp } = useContext(CityContext);
   const [loading, setLoading] = useState(true);
-  let tempDay, img, description, tempArr, feels_likeArr, currentDay;
-  if (temp) {
-    currentDay = temp.daily[0];
-    tempDay = (((currentDay.temp.max + currentDay.temp.eve) / 2) - 272.15).toFixed(2);
-    img = currentDay.weather[0].icon;
-    description = currentDay.weather[0].description;
-    feels_likeArr = currentDay.feels_like;
-    tempArr = currentDay.temp;
-
-  }
 
   const getCities = async () => {
     try {
-      let res = await doApiGetCities();
+      let res = await  GetCities();
       //  && res.status === 200
       if (res) {
-        updateCities(res);
+        await setCities(res);
+
       } else {
         alert('שגיאה בטעינת ערים אנא נסה מאוחר יותר!');
       }
     } catch (error) {
       console.error(error);
+
     } finally {
-      setLoading(false);
+      await setLoading(false);
     }
   };
 
@@ -52,25 +48,25 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCitiesData = async () => {
       for (let index = 0; index < cities.length; index++) {
         if (cities[index].city.toLowerCase() === 'jerusalem') {
-          await updateCurrentCity(cities[index]);
+          await setCurrentCity(cities[index]);
           break;
         }
       }
     };
-    fetchData();
+    fetchCitiesData();
   }, [cities]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCurrentCityData = async () => {
       if (currentCity) {
         let res = await getCityDetails(currentCity.city);
         setTemp(res);
       }
     };
-    fetchData();
+    fetchCurrentCityData();
 
   }, [currentCity]);
 
@@ -80,44 +76,34 @@ export default function Home() {
       <div className="container py-1">
         {currentUser && <h2 className="display-5">שלום {currentUser.First_Name} {currentUser.Last_Name}</h2>}
         <Search></Search>
-        {loading ? (
-          <div >
-            <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
-            <p className='display-7'>Loading...</p>
-          </div>
-        ) : (
-          <div style={{position:'relative'}}>
-            {temp?(
-              <>
-            
-            <div className="bg-light bg-opacity h-md-50 h-25 row justify-content-between p-5 rounded bg-opacity-75 d-flex" style={{minHeight:'150px',alignItems:'center'}}>
-             
-              <div className="col-8">
-                <h2 className="">היום</h2>
-                <p className="display-4">{currentCity.city}</p>
-                    <p>{tempDay}&deg;</p>
-                    <p>{description}</p>
-                              </div>
-              <div className="col-4">
-                <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} alt={description} className="h-100 w-100" />
-              </div>
-            </div>
 
-            <div className='buttomPosition' style={{position:'absolute',width:"100%" }}>
-            
+        <div style={{ position: 'relative' }}>
+          {temp ? (
+            <>
+              <WeatherToday />
+              <div className='buttomPosition' style={{ position: 'absolute', width: "100%" }}>
                 <div className="row justify-content-between" >
-                  {temp.daily.map((x, i) => {
-                    if (i > 0&&i<6) return <CardWeathereDay day={x} i={i} />;
-                  })}
+                  {temp.daily.slice(1, 6).map((x, i) => (
+                    <CardWeathereDay day={x} key={i} i={i} />
+                  ))}
+
                 </div>
-            </div>
+              </div>
             </>
-            
-            ):<>
-            <p>error {temp&&temp.res&& temp.data}</p>
-            </>}
-          </div>
-        )}
+
+          ) :
+            <>
+              {loading ? (
+                <div >
+                  <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
+                  <p className='display-7'>Loading...</p>
+                </div>
+              ) : (!temp) && (
+                <p>seems like we have problem... please try again :( </p>
+              )}
+            </>
+          }
+        </div>
 
       </div>
     </div>

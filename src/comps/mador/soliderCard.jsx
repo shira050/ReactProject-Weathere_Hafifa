@@ -29,10 +29,6 @@ export default function SoliderCard(props) {
           )}
         </div>
 
-        {currentSolider.Is_Officer && (
-          <OfficerIcon className='officerIcon' />
-        )}
-
       </div>
       <div className='text-small'>
         <p className='text-bold'>{currentSolider.Last_Name} {currentSolider.First_Name}</p>

@@ -5,7 +5,7 @@ import { USER } from '../../services/apiBasic';
 import { UserContext } from '../../context/userContext';
 
 export default function Header() {
-  const { currentUser, updateUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   let localUser;
   const nav = useNavigate();
@@ -15,7 +15,7 @@ export default function Header() {
   const onLogOut = () => {
     if (window.confirm('האם אתה בטוח שברצונך להתנתק?')) {
       localStorage.removeItem(USER);
-      updateUser(null)
+      setCurrentUser(null)
       nav('/');
     }
   };

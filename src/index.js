@@ -7,7 +7,11 @@ import 'mdbreact/dist/css/mdb.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { UserProvider } from './context/userContext';
 import { CityProvider } from './context/cityContext';
+import * as process from 'process';
 
+(window).global = window;
+(window).process = process;
+(window).Buffer = [];
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

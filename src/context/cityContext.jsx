@@ -11,16 +11,11 @@ const CityProvider = ({ children }) => {
   const addCity = (newCity) => {
     setCities([...cities, newCity]);
   };
-  const updateCities = (_cities) => {
-    setCities(_cities);
-  };
-  const updateCurrentCity = (_city) => {
-    setCurrentCity(_city);
-  };
+
 
 
   return (
-    <CityContext.Provider value={{ cities, addCity ,updateCities,currentCity,updateCurrentCity,temp,setTemp}}>
+    <CityContext.Provider value={{ cities, addCity ,setCities,currentCity,setCurrentCity,temp,setTemp}}>
       {children}
     </CityContext.Provider>
   );

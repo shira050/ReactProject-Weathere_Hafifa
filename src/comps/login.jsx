@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Button, Card, Input } from 'antd';
 import './css/login.css'; 
-import { doApiLogin } from '../services/apiService';
+import {  loginToSystem } from '../services/apiService';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/userContext';
 
@@ -9,7 +9,7 @@ function Login() {
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState({});
-    const { currentUser, updateUser } = useContext(UserContext);
+    const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const nav = useNavigate();
     let user = {
@@ -41,10 +41,10 @@ function Login() {
 
         if (isValid) {
 
-            let res = await doApiLogin(user);
+            let res = await loginToSystem(user);
             if (res && res.status === 200) {
                 localStorage.setItem('user', JSON.stringify(user));
-                updateUser(res.data);
+                setCurrentUser(res.data);
                 alert('Welcome ' + userName);
                 nav('/');
             }
@@ -57,16 +57,17 @@ function Login() {
         }
     }
 
+
     return (
         <div className="login-container">
             <Card className="login-card">
                 <div className="login-card-content">
-                    <h2 className="login-header">Login</h2>
-                    <p className="login-subheader">Please enter your name and password!</p>
+                    <h2 className="login-header">הירשם</h2>
+                    <p className="login-subheader">הכנס שם משתמש ומספר אישי</p>
 
                     <Input
                         className="mb-5"
-                        placeholder="userName"
+                        placeholder="שם משתמש"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
                     />
@@ -74,20 +75,16 @@ function Login() {
 
                     <Input.Password
                         className="mb-5"
-                        placeholder="Password"
+                        placeholder="מספר אישי"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
                     {errors.password && <div className="error-message">{errors.password}</div>}
 
                     <Button type="primary" size="large" onClick={login} style={{ width: '100px', alignSelf: 'center' }}>
-                        Login
+                        הירשם
                     </Button>
 
-
-                    <div className="sign-up-link">
-                        <p>Don't have an account? <a href="#!">Sign Up</a></p>
-                    </div>
                 </div>
             </Card>
         </div>

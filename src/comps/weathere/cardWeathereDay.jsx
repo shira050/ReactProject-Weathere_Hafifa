@@ -1,58 +1,51 @@
 import React from 'react'
 import '../../assets/whethereImges/sun.jpg'
 import { useTranslation } from 'react-i18next';
+import { convertKelvinToCelsius, getColor, getIcon } from '../../services/apiService';
+
 
 function CardWeathereDay(props) {
-  const { t } = useTranslation('he');
-  let tempDay = (((props.day.temp.max + props.day.temp.eve) / 2) - 272.15).toFixed(2);
-  let img = props.day.weather[0].icon;
-  let description = t(props.day.weather[0].description.toString());
-  let indexDay = props.i;
-  let degreeColor = '', cntHotestTime = 0;
-  let timeDayArr = ['day', 'eve', 'morn', 'night'];
-  let feels_likeArr = props.day.feels_like;
-  let tempArr = props.day.temp;
+  const { t } = useTranslation('he');//?
+  const { day} = props; //destructering
+  const description = t(props.day.weather[0].description.toString());
+  const feels_like = props.day.feels_like;
+  const temp = props.day.temp;
 
 
-  let titleDay="";
+ 
 
-  if (indexDay == 1)
-    titleDay = "מחר:"
-  else if (indexDay == 2)
-    titleDay = " מחרתיים:"
 
-  else if (indexDay > 2)
-    titleDay = ` בעוד ${indexDay} ימים:`
+  const getDayTitle = () => {
+    const indexDay = props.i;
 
 
 
-timeDayArr.map((i) => {
-  if (feels_likeArr[i] > tempArr[i])
-    cntHotestTime++;
-}
-)
-if (cntHotestTime == 1) {
-  degreeColor = 'silver';
-} else if (cntHotestTime == 2) {
-  degreeColor = 'orange';
-}
-else if (cntHotestTime > 2) {
-  degreeColor = 'red';
-}
-return (
-  <div className={`m-1 col-2 rounded bg-light bg-opacity-75 `} style={{ color: degreeColor, border: `solid ${degreeColor} 2px ` }}>
-    <p className='display-7 font-weight-bold m-0'>
-{titleDay}
-    </p>
+    
+    if (indexDay == 0)
+      return "מחר:"
+    else if (indexDay == 1)
+      return " מחרתיים:"
+
+    else if (indexDay > 1)
+      return ` בעוד ${indexDay} ימים:`
+
+  }
+  const tempDay = convertKelvinToCelsius((props.day.temp.max + props.day.temp.eve));
+
+  return (
+    <div className={`m-1 col-2 rounded bg-light bg-opacity-75 `} style={{ color: getColor(feels_like, temp), border: `solid ${getColor(feels_like, temp)} 2px ` }}>
+      <p className='display-7 font-weight-bold m-0'>
+        {getDayTitle()}
+      </p>
 
 
-    <img src={`https://openweathermap.org/img/wn/${img}@2x.png`} title={description} className='overflow-hiden h-50' />
-    <p className='font-weight-bold m-0'>{tempDay}&deg;</p>
+      <img src={getIcon(day)} title={description}  className='overflow-hiden  h-50' />
+      <p className='font-weight-bold m-0'>{tempDay}&deg;</p>
 
-    <p className='m-0'>{description}</p>
+      <p className='m-0'>{description}</p>
 
-  </div>
-)
+    </div>
+  )
 }
 
 export default CardWeathereDay

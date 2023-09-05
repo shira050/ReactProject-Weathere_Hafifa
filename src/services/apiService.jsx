@@ -1,12 +1,12 @@
-import { API_URL, doApiMethod, doApiGet } from "./apiBasic";
+import { API_URL, Method, getRquest } from "./apiBasic";
 import axios from "axios";
 import weatherData from '../assets/apiRequest.json'
 
 
-export const doApiLogin = async (bodyData) => {
+export const loginToSystem = async (bodyData) => {
   let url = API_URL + "/login";
   try {
-    let resp = await doApiMethod(url, "POST", bodyData, {
+    let resp = await Method(url, "POST", bodyData, {
       user_name: bodyData.name,
       user_mispar_ishi: bodyData.password
 
@@ -16,15 +16,15 @@ export const doApiLogin = async (bodyData) => {
     return err.response;
   }
 };
-export const doApiGetCities = async () => {
+export const GetCities = async () => {
   let url = API_URL + "/getAllCities";
   try {
-    // let resp = await doApiGet(url);
+    // let resp = await  getRquest(url);
     // return resp;
-    let cityResFromData=[];
+    let cityResFromData = [];
     let data = (weatherData.map(city => {
-     let cityName= city.timezone.split('/')[1];
-     cityResFromData.push({city:cityName})
+      let cityName = city.timezone.split('/')[1];
+      cityResFromData.push({ city: cityName })
     }));
     return cityResFromData;
   } catch (err) {
@@ -32,17 +32,17 @@ export const doApiGetCities = async () => {
   }
 };
 
-
+//remove   
 export const getCityDetails = async (currentCityName) => {
-  let cityRes = await doApiGetCityByName(currentCityName);
+  let cityRes = await GetCityByName(currentCityName);
   let res;
   if (cityRes) res = await getWethereBylatlan(cityRes.data.latitude, cityRes.data.longitude);
   return res;
 }
-export const doApiGetCityByName = async (cityName) => {
+export const GetCityByName = async (cityName) => {
   let url = API_URL + '/cities/' + cityName;
   try {
-    let resp = await doApiGet(url);
+    let resp = await getRquest(url);
     return resp;
   } catch (err) {
     return err.response;
@@ -50,8 +50,7 @@ export const doApiGetCityByName = async (cityName) => {
 }
 export const getWethereBylatlan = async (lat, lan) => {
   if (lat && lan) {
-    // ${process.env.API_KEY}
-    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lan}&appid=6f11fa9760902e1597265ad205f05d2c`;
+    let url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lan}&appid=${process.env.REACT_APP_API_KEY}`;
     try {
       // let resp = await axios.get(url);
       //  return resp;
@@ -65,24 +64,38 @@ export const getWethereBylatlan = async (lat, lan) => {
   }
 
 }
-export const chooseColor = async (feels_likeArr, tempArr) => {
-  let cntHotestTime = 0, degreeColor = '';
+const countHotestTime = (feels_like, temp) => {
+  let cntHotestTime = 0;
   let timeDayArr = ['day', 'eve', 'morn', 'night'];
   timeDayArr.map((i) => {
-    if (feels_likeArr[i] > tempArr[i])
+    if (feels_like[i] > temp[i])
       cntHotestTime++;
   }
   )
-  if (cntHotestTime == 1) {
-    degreeColor = 'gray';
-  } else if (cntHotestTime == 2) {
-    degreeColor = 'orange';
-  }
-  else if (cntHotestTime > 2) {
-    degreeColor = 'red';
-  }
-  return degreeColor;
+}
 
+export const getColor = async (feels_like, temp) => {
+  const cntHotestTime = countHotestTime(feels_like, temp);
+
+  if (cntHotestTime == 1) {
+    return 'silver';
+  } else if (cntHotestTime == 2) {
+    return 'orange';
+  }
+  return 'red';
+
+
+
+}
+export const getIcon = async (tempDay) => {
+ let icon= 'rainbow';
+  if (tempDay.temp.day > 29) { icon= 'sun' }
+  if (tempDay.clouds > 20) { icon= 'cloudy' }
+  if (tempDay.pop > 40) { icon= 'rain' }
+ return `/weatherIcons/${icon(day)}.png`
+}
+export  const convertKelvinToCelsius = (temp) => {
+  return ((temp / 2) - 272.15).toFixed(2);
 }
 
 

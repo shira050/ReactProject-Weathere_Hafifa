@@ -1,34 +1,22 @@
-.bg-img{
-    background-image: url('../../assets/cloudes.jpg') !important;
-    min-height: 100vh;
-    background-position: center;
-    background-size: cover;
-    
-}
-.center{
-    text-align: center;
-    align-items: center;
-    margin: 0 auto;
-    
-}
+.bg-img {
+  background-image: url('../../assets/cloudes.jpg') !important;
+  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
+  overflow: auto;
 
 
-  
-  @media  (min-width: 900px) {
-    .buttomPosition{
-        position:absolute;
-         bottom: -45%;
-    }
-  }
-  @media  (min-width: 600px) {
-    .buttomPosition{
-        position:absolute;
-         bottom: -55%;
-    }
-  }
-  @media  (min-width: 1200px) {
-    .buttomPosition{
-        position:absolute;
-         bottom: -30%;
-    }
-  }
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+
+}
+
+.buttomPosition {
+  position: absolute;
+  top: 80%;
+}
+
