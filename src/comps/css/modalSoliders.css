@@ -3,8 +3,8 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-     /* width: 579px; */
-  /* height: 700px; */
+     width: 100%;
+  height: 100%;
   padding: 27px 0 0;
   border-radius: 15px;
   box-shadow: 0 1px 11px 1px rgba(0, 0, 0, 0.12);
@@ -129,6 +129,10 @@ button {
     border-radius: 50px;
     padding: 0px !important;
 }
+.ant-modal-body {
+    overflow: hidden;
+}
+
 
 .container-modal {
     padding: 5px 25px;
@@ -140,3 +144,4 @@ button {
     outline: none;
     border: none;
 }
+

@@ -9,7 +9,6 @@ import '../../comps/css/modalSoliders.css';
 import { ReactComponent as CloseIcon } from '../icons/close.svg'
 import { ReactComponent as ArrowsIcon } from '../icons/arow.svg'
 
-
 export default function ModalSoliders() {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
@@ -46,12 +45,10 @@ export default function ModalSoliders() {
                 footer={null}
                 closeIcon={null}
                 width="80%"
-                wrapClassName="modal-body"
-                height='90%'          
+                bodyStyle={{ maxHeight: '90vh', overflowY: 'auto' }}
             >
-
                 <div className="modal-close-button text-right" onClick={toggleModal}>
-                    <CloseIcon/>
+                    <CloseIcon />
                 </div>
                 <div className="solider-modal-header container-modal">
                     <div className="text-right">
