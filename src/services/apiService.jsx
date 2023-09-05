@@ -92,7 +92,7 @@ export const getIcon = async (tempDay) => {
   if (tempDay.temp.day > 29) { icon= 'sun' }
   if (tempDay.clouds > 20) { icon= 'cloudy' }
   if (tempDay.pop > 40) { icon= 'rain' }
- return `/weatherIcons/${icon(day)}.png`
+ return `./weatherIcons/${icon}.png`
 }
 export  const convertKelvinToCelsius = (temp) => {
   return ((temp / 2) - 272.15).toFixed(2);

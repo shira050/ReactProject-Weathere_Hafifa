@@ -49,12 +49,13 @@ export default function Home() {
 
   useEffect(() => {
     const fetchCitiesData = async () => {
-      for (let index = 0; index < cities.length; index++) {
-        if (cities[index].city.toLowerCase() === 'jerusalem') {
-          await setCurrentCity(cities[index]);
-          break;
-        }
+     if(Object.keys(currentCity).length==0||!currentCity){
+      const jerusalemCity = cities.find(city => city.city.toLowerCase() === 'jerusalem');
+      if (jerusalemCity) {
+        setCurrentCity(jerusalemCity);
       }
+    }
+      
     };
     fetchCitiesData();
   }, [cities]);
