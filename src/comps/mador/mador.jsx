@@ -1,15 +1,16 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
-import {  getRquest } from '../../services/apiBasic';
+import { getRquest } from '../../services/apiBasic';
 import ModalSoliders from './modalSoliders';
 import { UserContext } from '../../context/userContext';
 
-//error bug
 function Mador() {
   const { soliders, updateSoliders } = useContext(UserContext);
+  const [error, setError] = useState();
+
   const getSoliders = async () => {
     try {
-      let res = await  getRquest(`http://localhost:${process.env.REACT_APP_API_PORT}/getAllSoldiers`);
+      let res = await getRquest(`http://localhost:${process.env.REACT_APP_API_PORT}/getAllSoldiers`);
       //  && res.status === 200
       if (res) {
         updateSoliders(res.data);
@@ -18,6 +19,8 @@ function Mador() {
       }
     } catch (error) {
       console.error(error);
+      setError(error)
+
     }
   };
 
@@ -29,7 +32,7 @@ function Mador() {
     <div className="container-fluid  text-center ">
       <div className="container py-5">
         {soliders.length > 0 ? <ModalSoliders />
-          : <p>שגיאה בשליפת חיילים</p>
+           : (error) && ( <p>שגיאה בשליפת חיילים</p>)
         }
       </div></div>
 

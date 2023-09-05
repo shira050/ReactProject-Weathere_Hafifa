@@ -87,12 +87,12 @@ export const getColor = async (feels_like, temp) => {
 
 
 }
-export const getIcon = async (tempDay) => {
+export const getIcon = (tempDay) => {
  let icon= 'rainbow';
   if (tempDay.temp.day > 29) { icon= 'sun' }
   if (tempDay.clouds > 20) { icon= 'cloudy' }
   if (tempDay.pop > 40) { icon= 'rain' }
- return `./weatherIcons/${icon}.png`
+ return `/images/weatherIcons/${icon}.png`
 }
 export  const convertKelvinToCelsius = (temp) => {
   return ((temp / 2) - 272.15).toFixed(2);

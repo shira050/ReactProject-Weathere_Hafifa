@@ -20,7 +20,7 @@ function WeatherToday() {
                 <p>{description}</p>
             </div>
             <div className="col-4">
-                <img src={getIcon(currentDay)} alt={description} className="h-100 w-100" />
+                <img src={getIcon(currentDay)} alt={description} className="h-50 w-50" />
             </div>
         </div>
     )

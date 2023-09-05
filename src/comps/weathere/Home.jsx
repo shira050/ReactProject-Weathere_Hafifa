@@ -1,28 +1,25 @@
 import React, { useContext, useEffect, useState } from 'react';
 import '../css/home.css';
 import Search from './search';
-import '../../assets/whethereImges/cloudAndSun.jpg';
 import { USER } from '../../services/apiBasic';
 import { UserContext } from '../../context/userContext';
 import { CityContext } from '../../context/cityContext';
-import {  GetCities,  GetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
+import { GetCities, GetCityByName, getCityDetails, getWethereBylatlan } from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
-import '../../assets/loading_gif.gif'
 import CardWeathereDay from './cardWeathereDay';
 import WeatherToday from './today';
+import Loading from '../loading';
 
 
-//default city jerusalem in input
 //final branch
-//error bug
 export default function Home() {
   const { currentUser } = useContext(UserContext);
   const { currentCity, setCurrentCity, cities, setCities, temp, setTemp } = useContext(CityContext);
   const [loading, setLoading] = useState(true);
-
+  const [error, setError] = useState();
   const getCities = async () => {
     try {
-      let res = await  GetCities();
+      let res = await GetCities();
       //  && res.status === 200
       if (res) {
         await setCities(res);
@@ -32,9 +29,9 @@ export default function Home() {
       }
     } catch (error) {
       console.error(error);
-
+      setError(error)
     } finally {
-      await setLoading(false);
+       setLoading(false);
     }
   };
 
@@ -49,13 +46,13 @@ export default function Home() {
 
   useEffect(() => {
     const fetchCitiesData = async () => {
-     if(Object.keys(currentCity).length==0||!currentCity){
-      const jerusalemCity = cities.find(city => city.city.toLowerCase() === 'jerusalem');
-      if (jerusalemCity) {
-        setCurrentCity(jerusalemCity);
+      if (Object.keys(currentCity).length == 0 || !currentCity) {
+        const jerusalemCity = cities.find(city => city.city.toLowerCase() === 'jerusalem');
+        if (jerusalemCity) {
+          setCurrentCity(jerusalemCity);
+        }
       }
-    }
-      
+
     };
     fetchCitiesData();
   }, [cities]);
@@ -95,11 +92,8 @@ export default function Home() {
           ) :
             <>
               {loading ? (
-                <div >
-                  <img src='https://mir-s3-cdn-cf.behance.net/project_modules/max_632/04de2e31234507.564a1d23645bf.gif' className='w-25'></img>
-                  <p className='display-7'>Loading...</p>
-                </div>
-              ) : (!temp) && (
+                <Loading/>
+              ) : (error) && (
                 <p>seems like we have problem... please try again :( </p>
               )}
             </>
