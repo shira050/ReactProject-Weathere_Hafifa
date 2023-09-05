@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import '../css/header.css';
-import { USER } from '../../services/apiBasic';
-import { UserContext } from '../../context/userContext';
+import './css/header.css';
+import { USER } from '../services/apiBasic';
+import { UserContext } from '../context/userContext';
+import { CityContext } from '../context/cityContext';
 
 export default function Header() {
   const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { historySearch} = useContext(CityContext);
+
 
   let localUser;
   const nav = useNavigate();
@@ -21,16 +24,21 @@ export default function Header() {
   };
 
   return (
-    <nav className="bg-dark p-2 container-fluid">
-      <div className="container d-flex justify-content-between"> {/* Use justify-content-between here */}
+    <nav className=" navSticky bg-dark p-2 container-fluid">
+      <div className="container d-flex justify-content-between"> 
         <div className="text-start">
           <Link className="navLink" to="/">
             ראשי
           </Link>
           {localUser && (
-            <Link className="navLink" to="/mador">
-              מדור
-            </Link>
+
+            <>
+              <Link className="navLink" to="/mador">
+                מדור
+              </Link>
+              <Link class="navLink" to='/history'>היסטוריה-{historySearch.length}</Link>
+
+            </>
           )}
         </div>
         <div className="text-end">

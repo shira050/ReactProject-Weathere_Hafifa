@@ -4,3 +4,6 @@
     margin: 30px 20px ;
     font-size: 18px;
 }
+.navSticky{
+    position: fixed;
+}

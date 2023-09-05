@@ -1,6 +1,5 @@
 import React from 'react';
-import './css/404Page.css'; // Make sure to adjust the path based on your project structure
-
+import './css/404Page.css'; 
 function Error404Page() {
   return (
     <section className="page_404">

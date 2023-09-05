@@ -32,7 +32,6 @@ export const GetCities = async () => {
   }
 };
 
-//remove   
 export const getCityDetails = async (currentCityName) => {
   let cityRes = await GetCityByName(currentCityName);
   let res;

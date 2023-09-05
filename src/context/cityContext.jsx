@@ -7,6 +7,7 @@ const CityProvider = ({ children }) => {
   const [currentCity, setCurrentCity] = useState({});
   const [cities, setCities] = useState([]);
   const [temp,setTemp]=useState();
+  const [historySearch,setHistorySearch]=useState([]);
 
   const addCity = (newCity) => {
     setCities([...cities, newCity]);
@@ -15,7 +16,7 @@ const CityProvider = ({ children }) => {
 
 
   return (
-    <CityContext.Provider value={{ cities, addCity ,setCities,currentCity,setCurrentCity,temp,setTemp}}>
+    <CityContext.Provider value={{ cities, addCity ,setCities,currentCity,setCurrentCity,temp,setTemp,historySearch,setHistorySearch}}>
       {children}
     </CityContext.Provider>
   );

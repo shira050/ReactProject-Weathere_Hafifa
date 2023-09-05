@@ -2,7 +2,10 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './comps/login';
 import Main from './comps/main';
-import Haeder from './comps/weathere/haeder';
+import HistoryLastSearch from './comps/weathere/historyLastSearch';
+import Footer from './comps/footer';
+
+import Haeder from './comps/haeder';
 import Mador from './comps/mador/mador';
 import './App.css';
 import { USER } from './services/apiBasic';
@@ -21,9 +24,14 @@ function App() {
         <Routes>
           <Route index element={<Main />} />
           <Route path="/login" element={<Login />} />
-          {currentUser && <Route path="/mador" element={<Mador />} />}
-          <Route path="*" element={<Error404Page/>} />
+          {currentUser &&
+            <>
+              <Route path="/mador" element={<Mador />} />
+              <Route path="/history" element={<HistoryLastSearch />} />
+            </>}
+          <Route path="*" element={<Error404Page />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

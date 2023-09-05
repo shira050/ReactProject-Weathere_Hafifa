@@ -11,7 +11,6 @@ import WeatherToday from './today';
 import Loading from '../loading';
 
 
-//final branch
 export default function Home() {
   const { currentUser } = useContext(UserContext);
   const { currentCity, setCurrentCity, cities, setCities, temp, setTemp } = useContext(CityContext);

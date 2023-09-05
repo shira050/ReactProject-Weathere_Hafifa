@@ -3,9 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { convertKelvinToCelsius, getColor, getIcon } from '../../services/apiService';
 
 function CardWeathereDay(props) {
-  const { t } = useTranslation('he');//?
   const { day} = props; 
-  const description = t(props.day.weather[0].description.toString());
+  const description = props.day.weather[0].description.toString();
   const feels_like = props.day.feels_like;
   const temp = props.day.temp;
 

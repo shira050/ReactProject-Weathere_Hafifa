@@ -32,9 +32,10 @@ function Mador() {
     <div className="container-fluid  text-center ">
       <div className="container py-5">
         {soliders.length > 0 ? <ModalSoliders />
-           : (error) && ( <p>שגיאה בשליפת חיילים</p>)
+          : (error) && (<p>שגיאה בשליפת חיילים</p>)
         }
-      </div></div>
+      </div>
+    </div>
 
   )
 }
